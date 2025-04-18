@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Ankolekar | Insights</title>
+  <link rel="icon" type="image/png" href="f1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #0A1828;          /* Dark classic blue */
+  --text-color: #ffffff;        /* Keep white text for readability */
+  --accent-color: #178582;      /* Turquoise for accents */
+  --secondary-accent: #BFA181;  /* Gold for secondary accents */
+  --secondary-text-color: #e0e0e0;
+      --font-body: "Segoe UI", "Roboto", sans-serif;
+      --font-heading: "Fira Code", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      padding: 20px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    h1, h2 {
+      color: var(--text-color);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    .main-content {
+      padding-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      margin-top: 1rem;
+    }
+
+    .nav-links a {
+      margin-right: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .favicon {
+  height: 50px;
+  width: 50px;
+}
+
+    p {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+    }
+
+    li a {
+      font-size: 1.05rem;
+    }
+
+    /* ===== Footer ===== */
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  background-color: #0A1828;
+  border-top: 1px solid #222222;
+  font-size: 0.95rem;
+  color: #222222;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.footer-icons a {
+  color: #aaa;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: var(--accent-color);
+}
+
+/* ===== Responsive Footer (Mobile) ===== */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-left,
+  .footer-icons {
+    justify-content: center;
+    flex: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <header>
+      <h1><img src="f1.png" alt="favicon" class="favicon" />Aryan Ankolekar</h1>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="insights.html">Insights</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Insights</h2>
+      <p>Welcome to my corner of thoughts, reflections, and experiments. Here's a growing list of deep dives into topics I’ve explored recently:</p>
+    </section>
+
+    <section>
+      <h2>Quick Reads</h2>
+      <ul>
+        <li><a href="learning-rate.html">CP191124. The Art of Making Models Learn</a></li>
+        <li><a href="hamming.html">PB301124. Hamming Code: The Beauty of Bit-Level Resilience</a></li>
+        <li><a href="case-study.html">CS150425. Apple Inc. — A Business Case Study</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>More Coming Soon!</h2>
+      <p>I’m always working on new insights. Come back later or ping me if you want to geek out over any of these!</p>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+        <div class="footer-icons">
+          <a href="mailto:aryan.ankolekar@gmail.com" target="_blank" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://github.com/AryanAnkolekar" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com/AryanAnkolekar" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

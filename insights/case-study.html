@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Ankolekar | CS150425</title>
+  <link rel="icon" type="image/png" href="f1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+:root {
+  --bg-color: #0A1828;          /* Dark classic blue */
+  --text-color: #ffffff;        /* Keep white text for readability */
+  --accent-color: #178582;      /* Turquoise for accents */
+  --secondary-accent: #BFA181;  /* Gold for secondary accents */
+  --secondary-text-color: #e0e0e0;  /* Light gray for better readability */
+  --font-body: "Segoe UI", "Roboto", sans-serif;
+  --font-heading: "Fira Code", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  padding: 20px;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #178582;  /* Turquoise for link hovers */
+}
+
+h1, h2, h3 {
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #178582;  /* Turquoise border under headings */
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.page-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-content {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.favicon {
+  height: 50px;
+  width: 50px;
+}
+
+.nav-links {
+  margin-top: 1rem;
+}
+
+.nav-links a {
+  margin-right: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  background-color: #0A1828;
+  border-top: 1px solid #222222;
+  font-size: 0.95rem;
+  color: #222222;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.footer-icons a {
+  color: #BFA181;  /* Gold for footer icons */
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: #178582;  /* Turquoise for footer icon hovers */
+}
+
+.fixed-toc {
+  position: fixed;
+  right: 100px;
+  top: 180px;
+  background-color: #0A1828;
+  padding: 1rem;
+  width: 200px;
+  font-size: 0.9rem;
+}
+
+.fixed-toc h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #BFA181;  /* Gold for section headers */
+}
+
+.fixed-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fixed-toc li {
+  margin-bottom: 0.4rem;
+}
+
+.fixed-toc a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.fixed-toc a:hover {
+  color: #178582;  /* Turquoise for hover states */
+}
+code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+@media (max-width: 1200px) {
+  .fixed-toc {
+    display: none;
+  }
+}
+
+strong {
+  color: #BFA181;  /* Gold for emphasis */
+}
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="main-content">
+      <header>
+        <h1><img src="f1.png" alt="favicon" class="favicon" />Aryan Ankolekar</h1>
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="insights.html">Insights</a>
+        </div>
+      </header>
+
+      <main class="content">
+        <h1>CS150425. Apple Inc. — A Business Case Study</h1>
+    
+        
+    
+        <section id="why-apple">
+          <h2># Why I Chose Apple</h2>
+          <p>
+            Apple is more than a tech company—it's a design philosophy, a business masterclass, and a brand that consistently redefines the boundaries of user experience. I chose Apple because it's one of the few companies that control nearly every element of their product stack: hardware, software, and services. This integration allows it to build seamless, intuitive experiences and maintain unparalleled quality control.
+          </p>
+          <p>
+            What fascinates me most is how Apple thinks long-term—building platforms like the App Store, designing its own chips, and now moving into spatial computing. Apple is not only reactive but profoundly proactive. Studying Apple offers the chance to explore the intersection of business logic, user psychology, design, and technology.
+          </p>
+        </section>
+    
+        <section id="case1">
+          <h2># Apple's Silicon Strategy</h2>
+          <p>
+            For over a decade, Apple relied on Intel to power its Mac lineup. While Intel chips were powerful, Apple was always limited by third-party product timelines and thermal constraints. At the same time, Apple had been designing its own chips for iPhones and iPads—refining them year over year into world-class SoCs.
+          </p>
+          <p>
+            In 2020, Apple launched the M1 chip, marking its full transition to custom silicon across its entire product line. This wasn't just a performance upgrade—it was a paradigm shift. The M1 chip offered faster processing, longer battery life, and greater energy efficiency than any previous Intel-based Mac. It also allowed Apple to unify its software ecosystem, with apps running seamlessly across iPhone, iPad, and Mac.
+          </p>
+          <p>
+            The move to Apple Silicon fundamentally changed the competitive landscape. It decoupled Apple from Intel's roadmap and allowed it to tailor chips specifically for its hardware and software. This vertical integration meant faster innovation, better optimization, and ultimately, a superior user experience. It also positioned Apple as a major player in semiconductor design—no longer reliant, but defining its own destiny.
+          </p>
+        </section>
+    
+        <section id="case2">
+          <h2># Apple Vision Pro</h2>
+          <p>
+            With the launch of Apple Vision Pro, Apple entered a brand-new category: spatial computing. While VR and AR had been explored by other companies, Apple's approach was singularly ambitious. Vision Pro blended augmented reality and virtual reality with a focus on daily productivity, media consumption, and immersive app interactions.
+          </p>
+          <p>
+            Unlike earlier VR headsets aimed at gaming or niche use cases, Vision Pro was pitched as a general-purpose device that could transform how users worked, communicated, and experienced digital environments. The interface was gesture-controlled, the visuals were ultra high-resolution, and the integration with Apple's ecosystem (iMessage, Photos, FaceTime) made it feel like a natural extension of the user's digital life.
+          </p>
+          <p>
+            Even though the Vision Pro launched at a steep price, it was not meant for mass adoption immediately. It signaled where Apple sees the future heading—beyond screens and keyboards, into a world where apps float in your space and interactions are more natural and intuitive.
+          </p>
+          <p>
+            Apple's track record suggests that this is only the beginning. Just like the original iPhone or Apple Watch, the Vision Pro may evolve through future iterations into a mainstream, indispensable device. For now, it's a statement of intent—and an extraordinary piece of engineering.
+          </p>
+        </section>
+    
+        <section id="case3">
+          <h2># Apple's Machine Learning Framework: Core ML and On-Device AI</h2>
+          <p>
+            Apple's Core ML framework revolutionized how machine learning is integrated into mobile applications by enabling on-device processing. With Core ML, Apple allows developers to implement machine learning models directly into their apps, enabling features like image recognition, natural language processing, and augmented reality—all while ensuring that data remains private and processing happens locally on the device.
+          </p>
+          <p>
+            Core ML leverages Apple's custom hardware, particularly the Neural Engine in the A-series and M-series chips, which accelerates ML tasks efficiently. This allows for real-time, low-latency AI operations, such as object detection in AR apps or personalized health insights. By processing data locally, Core ML improves both privacy (data stays on the device) and performance (faster execution with reduced cloud dependence). Developers can import models from popular frameworks like TensorFlow and Keras into Core ML, making it easier to add advanced ML capabilities without needing deep expertise in AI.
+          </p>
+          <p>
+            This shift toward on-device AI is part of a broader trend in edge computing, where computation is done closer to the data source rather than relying on the cloud. Apple's focus on local, efficient processing sets a new standard for mobile AI, demonstrating how companies can push the boundaries of privacy, performance, and user experience.
+          </p>
+        </section>
+    
+        <section id="case4">
+          <h2># Apple's Swift Programming Language: A New Era of Development</h2>
+          <p>
+            In 2014, Apple introduced Swift, a modern programming language designed to replace Objective-C for iOS, macOS, watchOS, and tvOS development. Swift was built to be faster, safer, and more approachable for developers, offering features like optionals, strong typing, and automatic memory management, making it easier to write and maintain code.
+          </p>
+          <p>
+            From a computer science perspective, Swift's key innovations included its performance optimization through LLVM (Low-Level Virtual Machine) and its ability to integrate with existing Objective-C code. Swift's design focused on speed and efficiency, utilizing features like value types for immutability, and the Swift compiler which provided optimizations at compile time.
+          </p>
+          <p>
+            The language's simple syntax and safety features reduced the likelihood of runtime crashes, a common problem in legacy languages. Swift's growth in popularity was further accelerated by Apple's support for open-source development, making it a cross-platform language for both Apple and server-side applications. Today, Swift is central to Apple's ecosystem, powering the development of everything from mobile apps to desktop software, and continues to evolve with regular updates aimed at improving developer experience and performance.
+          </p>
+        </section>
+    
+       
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-container">
+          <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+          <div class="footer-icons">
+            <a href="mailto:aryan.ankolekar@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/AryanAnkolekar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/AryanAnkolekar" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <aside class="fixed-toc">
+      <h3>Sections</h3>
+      <ul>
+        <li><a href="#why-apple">Why I Chose Apple</a></li>
+        <li><a href="#case1">Apple's Silicon Strategy</a></li>
+        <li><a href="#case2">Apple Vision Pro</a></li>
+        <li><a href="#case3">Core ML and On-Device AI</a></li>
+        <li><a href="#case4">Swift Programming Language</a></li>
+      </ul>
+    </aside>
+  </div>
+</body>
+</html>
