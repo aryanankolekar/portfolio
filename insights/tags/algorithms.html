@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithms Tag | Aryan Ankolekar</title>
+  <link rel="icon" type="image/png" href="../assets/f1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    html, body { height: 100%; }
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    .main-content { flex: 1 0 auto; display: flex; flex-direction: column; }
+    .site-footer { flex-shrink: 0; }
+    h2, .tag-blog-list { font-family: 'Nixie One', cursive; }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <header>
+      <h1>
+        <img src="../assets/f1.png" alt="favicon" class="favicon" />Aryan Ankolekar
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </h1>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../about.html">About</a>
+        <a href="../insights.html">Insights</a>
+      </div>
+    </header>
+    <h2><a href="index.html" class="tag-link-accent">Tags</a> → <span class="tag-text">#algorithms</span></h2>
+    <ul class="tag-blog-list">
+      <li>
+        <span class="post-date">1PB151224</span>
+        <a href="../hn-adam.html">A Smarter Way to Optimize Your Deep Neural Networks</a>
+        <p class="desc">HN_Adam, how is it a hybrid optimizer and what makes it better than traditional optimizers?</p>
+      </li>
+      <li>
+        <span class="post-date">1PB301124</span>
+        <a href="../hamming.html">Hamming Code: The Beauty of Bit-Level Resilience</a>
+        <p class="desc">Bit level error correction, a simple yet genius way to correct errors in data transmission.</p>
+      </li>
+    </ul>
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+        <div class="footer-icons">
+          <a href="mailto:aryan.ankolekar@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/AryanAnkolekar" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/AryanAnkolekar" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const icon = themeToggle.querySelector('i');
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      icon.className = savedTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      icon.className = newTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html> 

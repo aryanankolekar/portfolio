@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PB151224 | Aryan Ankolekar</title>
+  <link rel="icon" type="image/png" href="assets/f1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .blog-tags { 
+      font-family: 'Nixie One', cursive;
+      font-size: 1.2em;
+    }
+    .tag { 
+      border: none; 
+      text-decoration: none;
+      padding: 0;
+      margin: 0 0.5em;
+      background: none;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+    .tag:hover { 
+      text-decoration: none;
+      color: var(--accent-color);
+    }
+  </style>
+
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="main-content">
+      <header>
+        <h1>
+          <img src="assets/f1.png" alt="favicon" class="favicon" />Aryan Ankolekar
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </h1>
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="insights.html">Insights</a>
+        </div>
+      </header>
+
+      <div class="blog-tags">
+        <a href="tags/index.html"><i class="fas fa-tag"></i></a>
+        <a href="tags/machine-learning.html" class="tag">#Machine Learning</a>
+        <a href="tags/optimization.html" class="tag">#Optimization</a>
+        <a href="tags/algorithms.html" class="tag">#Algorithms</a>
+        <a href="tags/neural-networks.html" class="tag">#Neural Networks</a>
+        <a href="tags/deep-learning.html" class="tag">#Deep Learning</a>
+      </div>
+
+      <article>
+        <h1 class="text-4xl font-bold text-yellow-600 mb-6">PB151224. A Smarter Way to Optimize Your Deep Neural Networks</h1>
+        <p>Training deep neural networks efficiently is both an art and a science. While optimizers like SGD and Adam have revolutionized training, each has its drawbacks. That's where HN_Adam—a hybrid of Adam and AMSGrad—steps in to offer both fast convergence and better generalization.</p>
+    
+        <section id="intro">
+            <h2>What Is Optimization in Deep Learning?</h2>
+            <p>At its core, training a neural network means minimizing a loss function, a mathematical expression that quantifies how far the model's predictions deviate from the actual ground truth labels. Think of the loss function as a compass—it tells the network how wrong it is and in what direction it should adjust its internal parameters (like weights and biases) to get closer to the correct answer. For example, in a classification task, the loss might increase when the predicted class probabilities deviate from the true class, signaling the need for correction. The process of minimizing this loss is done through an iterative method called backpropagation, where gradients are calculated and used to update parameters in a direction that reduces the error. The optimizer plays a crucial role here—it determines exactly how those parameters should be adjusted at each step to efficiently reduce the loss and move the model closer to optimal performance.</p>
+          </section>
+          
+          <section id="classic-optimizers">
+            <h2>Classic Optimizers: A Quick Recap</h2>
+            <h3 id="sgd">1. Stochastic Gradient Descent (SGD)</h3>
+            <pre><code>θₜ₊₁ = θₜ - η ∇J(θₜ)</code></pre>
+            
+            <h3 id="momentum">2. Momentum</h3>
+            <pre><code>vₜ = γvₜ₋₁ + η∇J(θₜ)
+          θₜ₊₁ = θₜ - vₜ</code></pre>
+            
+            <h3 id="adam">3. Adam (Adaptive Moment Estimation)</h3>
+            <pre><code>mₜ = β₁mₜ₋₁ + (1 - β₁)∇J(θₜ)
+          vₜ = β₂vₜ₋₁ + (1 - β₂)(∇J(θₜ))²
+          θₜ₊₁ = θₜ - η * m̂ₜ / (√v̂ₜ + ε)</code></pre>
+          </section>
+          
+          <section id="hnadam">
+            <h2>Enter HN_Adam</h2>
+            <p>HN_Adam introduces two main ideas that significantly enhance the traditional Adam optimizer: adaptive norm scaling and a hybrid mechanism between Adam and AMSGrad.
+
+                The first innovation, adaptive norm scaling, dynamically adjusts the "power" or norm used in the parameter update rule based on the behavior of the gradient across training epochs. Instead of using a fixed norm (like the square in Adam's denominator), HN_Adam adapts this norm according to the curvature of the loss landscape. When the gradient values are large or unstable, it increases the norm to take larger, more exploratory steps. Conversely, in more stable regions with consistent gradients, it reduces the norm to take smaller, more precise steps. This dynamic scaling helps the model escape local minima early on while ensuring refined convergence near the optimal point—essentially balancing exploration and exploitation throughout training.
+                
+                The second idea is a hybrid switching mechanism that intelligently toggles between the behaviors of the standard Adam and the more stable AMSGrad optimizer. When the norm drops below a certain threshold (indicating a transition to a more stable region of the loss surface), HN_Adam switches to an AMSGrad-like behavior to ensure convergence and avoid overshooting. This hybrid approach leverages Adam's fast adaptation during early training and AMSGrad's more consistent and theoretically sound convergence properties in the later stages.
+                
+                Together, these two ideas empower HN_Adam to not only learn faster but also generalize better—solving two of the most pressing challenges in deep neural network optimization.</p>
+            <pre><code>θₜ₊₁ = θₜ - η * mₜ / (vₜ^(1/K(t)) + ε)</code></pre>
+          
+          <section id="why-works">
+            <h2>Why It Works: Curvature-Aware Behavior</h2>
+            <table>
+              <thead>
+                <tr><th>Region</th><th>Gradient</th><th>Ideal Step</th><th>HN_Adam</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Flat Surface</td><td>Small</td><td>Large</td><td>Large</td></tr>
+                <tr><td>Narrow Valley</td><td>Large</td><td>Small</td><td>Small</td></tr>
+                <tr><td>Smooth Slope</td><td>Large</td><td>Large</td><td>Large</td></tr>
+              </tbody>
+            </table>
+          </section>
+          
+          <section id="results">
+            <h2>Experimental Results</h2>
+            
+            <h3 id="mnist">MNIST Dataset</h3>
+            <p>
+              HN_Adam achieved an impressive 98.59% testing accuracy while completing the training process in just 1048 seconds. MNIST is a benchmark dataset consisting of 70,000 grayscale images of handwritten digits (0 through 9), with each image sized at 28x28 pixels. While it's often considered an "easy" dataset by today's standards, it remains a widely-used baseline to compare model and optimizer performance.
+            </p>
+            <p>
+              Achieving near-perfect accuracy on MNIST requires an optimizer that not only converges quickly but also maintains precision without overfitting. HN_Adam did exactly that—converging faster than most optimizers and achieving higher accuracy, even outperforming recent adaptive algorithms like AdaBelief and AMSGrad. This demonstrates HN_Adam's ability to efficiently handle clean, low-resolution image data.
+            </p>
+
+            <h3 id="cifar">CIFAR-10 Dataset</h3>
+            <p>
+              On the more complex CIFAR-10 dataset, HN_Adam delivered 97.51% testing accuracy, completing training in 2737 seconds. CIFAR-10 includes 60,000 32x32 color images across 10 diverse object categories such as airplanes, cars, cats, and trucks. Unlike MNIST, CIFAR-10 presents greater challenges due to its higher variance, color channels, and real-world object variability.
+            </p>
+            <p>
+              Achieving high accuracy on CIFAR-10 requires not just fast learning, but robust generalization and stability across noisy, high-dimensional data. HN_Adam rose to the challenge—maintaining the convergence speed benefits of Adam while achieving superior accuracy and stability, even compared to the most competitive optimizers in recent literature.
+            </p>
+          </section>
+          
+          <section id="implementation">
+            <h2>Implementation Pseudocode</h2>
+            <pre><code># Pseudocode
+          initialize m, v = 0
+          for each epoch:
+              g = gradient
+              m = β₁ * m + (1 - β₁) * g
+              v = β₂ * v + (1 - β₂) * g^K(t)
+          
+              K(t) = K₀ * (m_prev / max(|g|, m_prev))
+              if K(t) < 2:
+                  use AMSGrad variant
+              else:
+                  use Adam variant
+          
+              θ = θ - η * m / (v^(1/K(t)) + ε)
+          </code></pre>
+          </section>
+          
+          <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+              Optimizing deep neural networks is a delicate balance between speed, stability, and generalization. While traditional optimizers like SGD and Adam have laid the groundwork, they each come with trade-offs—SGD tends to generalize well but converges slowly, while Adam converges fast but may generalize poorly.
+            </p>
+
+            <p>
+              HN_Adam was introduced to bridge this divide. By incorporating two key innovations:
+            </p>
+            <ul>
+              <li>
+                <strong>Adaptive Norm Scaling</strong> – adjusting the power used in the update rule based on the gradient history, allowing the algorithm to explore and exploit more effectively during training.
+              </li>
+              <li>
+                <strong>Hybrid Switching Mechanism</strong> – seamlessly transitioning between Adam and AMSGrad when needed to maintain both convergence speed and generalization.
+              </li>
+            </ul>
+
+            <p>
+              These enhancements allow HN_Adam to dynamically adapt its behavior based on the geometry of the loss landscape, mimicking the characteristics of an ideal optimizer. Whether on smooth, flat regions or sharp valleys, HN_Adam intelligently chooses the right learning step to maximize efficiency.
+            </p>
+
+            <p>
+              Through extensive experiments on popular datasets like MNIST and CIFAR-10, HN_Adam demonstrated:
+            </p>
+            <ul>
+              <li>Faster convergence than Adam and its variants</li>
+              <li>Higher testing accuracy than other state-of-the-art optimizers</li>
+              <li>More stable and consistent performance across architectures</li>
+            </ul>
+
+            <p>
+              Even when tested on large-scale datasets like ImageNet with complex models like ResNet-18, HN_Adam outperformed powerful optimizers like AdaBelief, Yogi, and RAdam—proving its robustness and scalability.
+            </p>
+
+            <p>
+              In essence, HN_Adam is not just a tweak—it's a thoughtful evolution of adaptive optimization, addressing the weaknesses of existing algorithms while enhancing their strengths. For anyone working on training deep models—whether for academia or production—HN_Adam is a compelling optimizer worth trying in your next training run.
+            </p>
+          </section>
+          
+      </article>
+
+      <footer class="site-footer">
+        <div class="footer-container">
+          <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+          <div class="footer-icons">
+            <a href="mailto:aryan.ankolekar@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/AryanAnkolekar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/AryanAnkolekar" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <aside class="fixed-toc">
+      <h3>Sections</h3>
+      <ul>
+        <li><a href="#intro">What Is Optimization</a></li>
+        <li><a href="#classic-optimizers">Classic Optimizers</a>
+          <ul>
+            <li><a href="#sgd">SGD</a></li>
+            <li><a href="#momentum">Momentum</a></li>
+            <li><a href="#adam">Adam</a></li>
+          </ul>
+        </li>
+        <li><a href="#hnadam">Enter HN_Adam</a></li>
+        <li><a href="#why-works">Curvature-Aware Behavior</a></li>
+        <li><a href="#results">Experimental Results</a>
+          <ul>
+            <li><a href="#mnist">MNIST Dataset</a></li>
+            <li><a href="#cifar">CIFAR-10 Dataset</a></li>
+          </ul>
+        </li>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </aside>
+  </div>
+  <script src="../theme.js"></script>
+</body>
+</html>
