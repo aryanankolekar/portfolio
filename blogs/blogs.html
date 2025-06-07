@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs | Aryan Ankolekar</title>
+    <link rel="icon" type="image/png" href="/f1.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/blogs/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .blog-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .blog-list li {
+        margin-bottom: 1rem;
+      }
+
+      .blog-list a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .blog-list a:hover {
+        color: var(--accent-color);
+      }
+
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        margin-top: 0;
+      }
+
+      section {
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body class="insights-page">
+    <div class="main-content">
+      <header>
+        <h1>
+          <div class="header-title">
+            <img
+              src="../f1.png"
+              alt="favicon"
+              class="favicon"
+              width="5000"
+              height="5000"
+            />
+            <span>Aryan Ankolekar</span>
+          </div>
+          <div class="header-buttons">
+            <button class="search-toggle" aria-label="Open search">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </h1>
+        <div class="nav-links">
+          <a href="/">home</a>
+          <a href="/about">about</a>
+          <a href="/blogs">blog</a>
+          <a href="/blogs/case-study">aps domain</a>
+        </div>
+      </header>
+
+      <p>
+        Welcome to my corner of thoughts, reflections, and experiments. Here's a
+        growing list of some shallow and some deep dives into topics I've
+        explored recently
+      </p>
+
+      <section id="blogList">
+        <h2>Case Study</h2>
+        <ul class="blog-list">
+          <li data-tags="case-study,apple">
+            <a href="/blogs/case-study">Apple Inc. — A Business Case Study</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="blogList">
+        <h2>Blogs</h2>
+        <ul class="blog-list">
+          <li data-tags="machine-learning,deep-learning">
+            <a href="/blogs/learning-rate">The Art of Making Models Learn</a>
+          </li>
+          <li data-tags="deep-learning,machine-learning">
+            <a href="/blogs/hn-adam"
+              >A Smarter Way to Optimize Your Deep Neural Networks</a
+            >
+          </li>
+          <li data-tags="algorithms">
+            <a href="/blogs/hamming"
+              >Hamming Code: The Beauty of Bit-Level Resilience</a
+            >
+          </li>
+          <li data-tags="formula1">
+            <a href="/blogs/formula1"
+              >A Curious Case of Engineering Ingenuity in Formula 1</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <div class="tags-container">
+        <aside class="tags-menu">
+          <h3>Tags might make sense</h3>
+          <div class="tags-list">
+            <a class="tag" href="/blogs/tags/machine-learning"
+              >Machine Learning</a
+            >
+            <a class="tag" href="/blogs/tags/algorithms">Algorithms</a>
+            <a class="tag" href="/blogs/tags/case-study">Case Study</a>
+            <a class="tag" href="/blogs/tags/formula1">Formula 1</a>
+          </div>
+          <div class="browse-tags">
+            <a href="/blogs/tags" class="tag-link">Browse by Tags</a>
+          </div>
+        </aside>
+      </div>
+
+      <section>
+        <h2>More Coming Soon!</h2>
+        <p>
+          I'm always working on new insights. Come back later or ping me if you
+          want to geek out over any of these!
+        </p>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-container">
+          <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+          <div class="footer-icons">
+            <a href="mailto:aryan.ankolekar@gmail.com" target="_blank"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a href="https://github.com/AryanAnkolekar" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://twitter.com/AryanAnkolekar" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div id="searchModal" class="search-modal" style="display: none">
+      <div class="search-modal-content">
+        <button class="close-search" aria-label="Close search">Close</button>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search articles or tags..."
+          />
+          <button
+            id="clearSearchInput"
+            aria-label="Clear search input"
+            style="display: none"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="search-results-container">
+          <div class="search-tags" id="searchTags">
+            <!-- Tags will be dynamically inserted here -->
+          </div>
+          <div class="search-articles" id="searchArticles">
+            <!-- Articles will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.querySelector(".theme-toggle");
+      const icon = themeToggle.querySelector("i");
+
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        icon.className = savedTheme === "light" ? "fas fa-sun" : "fas fa-moon";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme =
+          document.documentElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+
+        document.documentElement.setAttribute("data-theme", newTheme);
+        icon.className = newTheme === "light" ? "fas fa-sun" : "fas fa-moon";
+        localStorage.setItem("theme", newTheme);
+      });
+    </script>
+    <script src="../script.js"></script>
+  </body>
+</html>

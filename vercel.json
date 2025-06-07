@@ -1,0 +1,37 @@
+{
+  "rewrites": [
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/blogs", "destination": "/blogs/blogs.html" },
+    { "source": "/blogs/hamming", "destination": "/blogs/hamming.html" },
+    {
+      "source": "/blogs/learning-rate",
+      "destination": "/blogs/learning-rate.html"
+    },
+    { "source": "/blogs/hn-adam", "destination": "/blogs/hn-adam.html" },
+    { "source": "/blogs/case-study", "destination": "/blogs/case-study.html" },
+    { "source": "/blogs/tags", "destination": "/blogs/tags/index.html" },
+    { "source": "/blogs/formula1", "destination": "/blogs/formula1.html" },
+    {
+      "source": "/blogs/tags/machine-learning",
+      "destination": "/blogs/tags/machine-learning.html"
+    },
+    {
+      "source": "/blogs/tags/deep-learning",
+      "destination": "/blogs/tags/deep-learning.html"
+    },
+    {
+      "source": "/blogs/tags/algorithms",
+      "destination": "/blogs/tags/algorithms.html"
+    },
+    {
+      "source": "/blogs/tags/case-study",
+      "destination": "/blogs/tags/case-study.html"
+    },
+    { "source": "/blogs/tags/apple", "destination": "/blogs/tags/apple.html" },
+    {
+      "source": "/blogs/tags/formula1",
+      "destination": "/blogs/tags/formula1.html"
+    }
+  ]
+}

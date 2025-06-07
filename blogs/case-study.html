@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple Inc. | Aryan Ankolekar</title>
+  <link rel="icon" type="image/png" href="apsassets/f1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="apsassets/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nixie+One&display=swap" rel="stylesheet">
+  <!-- Add highlight.js for Python syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="dark-theme">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" id="light-theme">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+
+
+  <style>
+      .blog-tags {
+        font-family: "Nixie One", cursive;
+        font-size: 1.2em;
+      }
+      .tag {
+        border: none;
+        text-decoration: none;
+        padding: 0;
+        margin: 0 0.5em;
+        background: none;
+        color: var(--text-color);
+        transition: color 0.3s ease;
+      }
+      .tag:hover {
+        text-decoration: none;
+        color: var(--accent-color);
+      }
+
+      .fixed-toc {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100px;
+  transition: top 0.3s ease;
+}
+
+.fixed-toc::-webkit-scrollbar {
+  width: 6px;
+}
+.fixed-toc::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+.fixed-toc::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+  border-radius: 3px;
+}
+.fixed-toc::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+.toc-section {
+  margin: 10px 0;
+}
+.toc-section > a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.toc-section:has(ul) > a::before {
+  content: "▼";
+  font-size: 0.8em;
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+.toc-section.collapsed > a::before {
+  transform: rotate(-90deg);
+}
+.toc-section ul {
+  margin-left: 20px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+}
+.toc-section.collapsed ul {
+  max-height: 0;
+  opacity: 0;
+}
+.toc-section > a.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+.toc-section ul li a.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+pre-code {
+  white-space: pre-wrap;
+}
+
+.image-container {
+  width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 2em; /* Adds some space below the table */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 2em;
+  -webkit-overflow-scrolling: touch;
+
+}
+
+/* Add this new rule for the table itself to ensure consistent behavior */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Add this to allow text to wrap within the now wider cells */
+.table-container th,
+.table-container td {
+  padding: 12px 15px; /* A bit more padding for readability */
+  vertical-align: top;
+  white-space: normal; /* Allows text to wrap */
+}
+
+/* --- NEW: Column Width Adjustments --- */
+/* This is where we target specific columns to widen them */
+
+/* Column 3: Use Case */
+.table-container th:nth-child(3),
+.table-container td:nth-child(3) {
+  min-width: 350px;
+}
+
+/* Column 8: Notes / Trade-offs */
+.table-container th:nth-child(8),
+.table-container td:nth-child(8) {
+  min-width: 350px;
+}
+
+/* Optional: Set a min-width for other columns for a balanced layout */
+.table-container th:nth-child(1), .table-container td:nth-child(1) { min-width: 220px; } /* Algorithm/DS */
+.table-container th:nth-child(2), .table-container td:nth-child(2) { min-width: 200px; } /* Applications */
+.table-container th:nth-child(4), .table-container td:nth-child(4) { min-width: 200px; } /* Key Operations */
+
+
+/* Optional: Style the scrollbar to match your site's theme */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
+.table-container::-webkit-scrollbar-track {
+  background: var(--bg-color, #f1f1f1);
+  border-radius: 10px;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--text-color, #888);
+  border-radius: 10px;
+}
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color, #555);
+}
+
+
+    </style>
+
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="main-content">
+      <header>
+        <h1>
+          <div class="header-title">
+            <img src="../f1.png" alt="favicon" class="favicon" width="5000" height="5000" />
+            <span>Aryan Ankolekar</span>
+          </div>
+          <div class="header-buttons">
+            <button class="search-toggle" aria-label="Open search">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </h1>
+        <div class="nav-links">
+          <a href="/">home</a>
+          <a href="/about">about</a>
+          <a href="/blogs">blog</a>
+          <a href="/blogs/case-study">aps domain</a>
+        </div>
+      </header>
+
+
+      <div class="blog-tags">
+          <a href="/blogs/tags"><i class="fas fa-tag"></i></a>
+          <a href="/blogs/tags/apple" class="tag">#apple</a>
+          <a href="/blogs/tags/case-study" class="tag">#casestudy</a>
+        </div>
+
+
+      <article>
+        <h1 class="text-4xl font-bold text-yellow-600 mb-6"> Apple Inc. - A Case Study</h1>
+        <section id="intro">
+            <h2>Why Apple?</h2>
+            <p>Apple is a mogul in both the business and tech worlds. No matter where you go, its presence is unmistakable. Over the years, Apple has quietly embedded itself into our daily lives—something that could be a standalone case study.</p>
+            <p>Since diving into the Apple ecosystem, I've found myself increasingly intrigued by certain functionalities—some of which go unnoticed by the average user. These include the Shortcuts app, AirPods, and many more.</p>
+            <p>This portfolio is my attempt to dissect these cases from the inside out, using logic, data structures, algorithms, and even a bit of LLM-powered insight. Instead of eyeing different cases and delving into them seprately, I have chosen a few prominent or rather products/services that I'm very much familiar with and dissected them into several sub-cases for each. Let's start with the one that caught me most off guard: the Shortcuts app.</p>
+        </section>
+          
+          <section id="shortcuts-app">
+            <h2>The Shortcuts App</h2>
+            <p>First up: the Shortcuts app—a deceptively powerful and beautifully intuitive tool for automating device behavior. Think of it as Apple's visual scripting engine for iOS. It allows users to automate almost every facet of their phone's functionality without writing a single line of code.</p>
+            <p>Picture this: your Apple Watch detects you've started jogging, your AirPods are in, and instantly, your favorite workout playlist starts blasting. Sounds like a UI/UX and software orchestration nightmare, right? Surprisingly, Apple has made this almost trivial through Shortcuts.</p>
+            <p>At its core, every Shortcut is a sequence of modular building blocks called "actions." These are essentially function calls—wrapped in a user-friendly interface—that can be linked together, nested with conditionals, looped, or even run asynchronously. The abstraction is clean, but not shallow.</p>
+            <p>However, this kind of high-level automation doesn't come without its trade-offs. Error handling is limited, debugging is opaque, and the number of edge cases—especially when mixing sensors, third-party apps, and context-aware triggers—is nontrivial.</p>
+            <p>So how does it all work under the hood? Let's break it down.</p>
+
+
+            <h3 id="dag">Shortcuts as Executable Graphs (DAGs)</h3>
+            <p>The execution model of iOS Shortcuts is far from linear. Under the hood, each Shortcut is internally represented as a directed acyclic graph (DAG). In this structure, each node corresponds to a distinct action—like Get Weather, Send Message, or Open App—while the edges represent data dependencies between these actions.
+               
+              Control structures such as conditionals (If/Otherwise) and loops (Repeat, Choose from List) introduce branching logic. Rather than executing these sequentially like traditional code, the Shortcuts engine flattens or compiles them into a graph-based intermediate representation (IR). This abstraction allows for flexible, parallelizable execution and easier visualization of data flow.
+               
+               Each node can generate or consume variables, which are passed along by label-based references like Repeat Item or Shortcut Input. These labels act as edge connectors, linking nodes through explicit data flow rather than implicit stack frames or scopes.
+               
+               Execution likely happens via a stateful interpreter that traverses this DAG, maintaining a local environment of variable bindings and execution state. This design aligns with how workflow orchestration systems operate—similar to Apache Airflow or even Apple's own legacy tool, Quartz Composer.
+               
+               It's visual programming, but with a runtime that mimics full-fledged orchestration engines—streamlined for mobile, yet surprisingly expressive.</p>
+            <div class="image-container">
+              <img
+                src="apsassets/DAG.png"
+                alt="Directed Acyclic Graph"
+                class="responsive-image"
+                loading="lazy"
+              />
+              <p class="image-source", style="text-align: center;"> Image 1 : <a href="https://www.geeksforgeeks.org/introduction-to-directed-acyclic-graph/" target="_blank" rel="noopener"> GeeksforGeeks - Introduction to Directed Acyclic Graph</a></p>
+            </div>
+
+
+            <h3 id="lexicalscope">Lexical and Contextual Variable Scope</h3>
+            <p>Shortcuts enforces scoping rules that loosely resemble those in functional programming languages. Variables declared in earlier steps are globally accessible to subsequent steps—unless those steps are nested within control structures like conditionals or loops.
+               
+               Inside constructs such as Repeat or If, variables become context-dependent, and their availability is limited to that block's execution scope. Apple enforces this behavior through real-time static analysis in the Shortcuts editor. If you attempt to reference a variable outside its valid scope—say, accessing Repeat Item outside a loop—the editor flags it immediately with an error.
+               
+               This design implies that Apple is performing limited data-flow analysis and type validation behind the scenes. It's not unlike Swift's type inference engine, but adapted for a visual programming paradigm. The system ensures variable visibility, usage correctness, and basic type expectations—all without exposing the user to traditional programming constructs.
+               
+               It's a lightweight but meaningful form of compile-time error prevention—rare for visual tools—and it brings structure to what could otherwise devolve into a chaotic no-code mess.</p>
+            
+
+            <h3 id="spa">Static Path Analysis and Dead Branch Pruning</h3>
+            <p>A practical and forward-compatible enhancement to the Shortcuts engine would be the integration of static reachability and dead code analysis. Since each Shortcut is internally represented as a DAG, Apple could easily implement a static analysis pass using standard techniques like depth-first search (DFS) or dominator tree analysis.
+               
+               This would allow the engine to detect Unreachable nodes (e.g., actions never triggered due to logical fallacies), Unused variable sets, and Redundant branches—especially in complex conditional flows.
+               
+               The idea aligns closely with LLVM's <a style="text-decoration: underline;" href="https://dl.acm.org/doi/abs/10.1145/3503222.3507764" target="_blank">Dead Code Elimination</a> (DCE) phase and even mirrors optimizations Apple already uses in SwiftUI's view graph pruning, where unused or off-screen views are discarded to improve performance.
+               
+               Such an analysis could run offline as a linting pass—either during save, preview, or before execution—without incurring runtime penalties. The engine already performs basic static checks (like variable scope enforcement), so this would be a natural extension of the existing pipeline.
+               
+               By surfacing dead logic paths or unused actions to users, Apple could significantly improve Shortcut reliability and maintainability—without compromising on simplicity.</p>
+               <div class="image-container">
+            <img
+              src="apsassets/DeadBranchPruning.png"
+              alt="Dead Branch Pruning"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 2 : <a href="https://skedbooks.com/books/data-mining-data-warehousing/tree-pruning/" target="_blank" rel="noopener"> Skedbooks - Tree Pruning</a></p>
+          </div>
+
+
+            <h3 id="costmodelling">Cost Modeling via Execution Profiling</h3>
+            <p>Each action in Shortcuts can be associated with an empirical or heuristic cost model. These cost estimates could include Latency (e.g., network-bound actions like Get Weather), Memory usage (e.g., iterating over large HealthKit datasets), I/O intensity (e.g., reading/writing to iCloud Drive).</p>
+            <p>By assigning weights to these actions, Apple could construct a lightweight static cost model for each Shortcut. This would enable the engine to predict expected runtime performance—flagging shortcuts that may be slow, memory-intensive, or energy-draining before execution.</p>
+            <p>This isn't speculative. Apple already uses energy profiling and resource estimation in tools like <a style="text-decoration: underline;" href="https://books.google.com/books?hl=en&lr=&id=wBaJDwAAQBAJ&oi=fnd&pg=PP5&dq=coreml&ots=l1A_x856MM&sig=4cD3ug0bgOtgxq2Jrpf69HT7ksE" target="_blank" rel="noopener noreferrer">CoreML</a> (e.g., energy usage per inference during model compilation). The same profiling infrastructure could be adapted here to warn users about inefficient automations at authoring or preview time.</p>
+            <p>The result? A smarter, more performant Shortcuts experience—without sacrificing usability. Power users get insights, while everyday users avoid creating shortcuts that quietly drain battery or stall in execution.</p>
+            <pre><code class="language-python">from typing import List, Dict
+
+# Define example actions and their heuristic costs
+ACTION_COSTS = {
+    "Get Weather": {"latency": 8, "memory": 2, "io": 3},
+    "Send Message": {"latency": 3, "memory": 1, "io": 2},
+    "Read Health Data": {"latency": 5, "memory": 8, "io": 2},
+    "Save to iCloud": {"latency": 4, "memory": 2, "io": 7},
+    "Run Script": {"latency": 6, "memory": 5, "io": 5}
+}
+
+# Weights for combining different cost components into a single score
+WEIGHTS = {"latency": 0.4, "memory": 0.3, "io": 0.3}
+
+def estimate_cost(actions: List[str]) -> Dict[str, float]:
+    total_cost = {"latency": 0, "memory": 0, "io": 0}
+    for action in actions:
+        if action in ACTION_COSTS:
+            for key in total_cost:
+                total_cost[key] += ACTION_COSTS[action][key]
+    total_score = sum(total_cost[k] * WEIGHTS[k] for k in total_cost)
+    return {"total_score": total_score, **total_cost}
+
+# Example: a shortcut composed of these actions
+shortcut_actions = ["Get Weather", "Read Health Data", "Save to iCloud"]
+estimate_cost(shortcut_actions)</code></pre>
+          
+
+            <h3 id="simhash">Failure Clustering Using SimHash and Bloom Filters</h3>
+            <p>Given Apple's access to on-device, opt-in analytics, it could implement a system to proactively detect fragile or failure-prone Shortcut patterns using graph fingerprinting techniques.</p>
+            <p>Each Shortcut's DAG structure can be hashed using <a style="text-decoration: underline;" href="http://www.webrankinfo.com/dossiers/wp-content/uploads/simhash.pdf" target="_blank" rel="noopener noreferrer">SimHash</a>, a locality-sensitive hashing algorithm that preserves similarity. This would allow the system to cluster structurally similar shortcuts—especially those that repeatedly fail under similar conditions (e.g., a common pattern like <i>Get URL</i> followed by <i>Get Contents of URL</i> failing due to HTTPS certificate errors or timeout issues).</p>
+            <p>To further reduce overhead, <a style="text-decoration: underline;" href="https://ieeexplore.ieee.org/abstract/document/5751342/.pdf" target="_blank" rel="noopener noreferrer">Bloom Filters</a> can be used to track hashes of known-bad execution patterns—effectively flagging high-risk DAG topologies in constant time. When a user builds a new shortcut that structurally resembles a historically unstable one, the system could surface a subtle, non-intrusive warning.</p>
+            <p>Similar methods are already deployed in Safari's anti-phishing infrastructure, which uses LSH and Bloom filters to detect malicious URL patterns. iOS runtime security, which applies probabilistic data structures for integrity and threat detection.</p>
+            <div class="image-container">
+            <img
+              src="apsassets/simhash.png"
+              alt="Simhash"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 3 : <a href="https://www.fromkk.com/posts/near-duplicate-with-simhash/" target="_blank" rel="noopener"> KK's Blog - Near-duplicate with SimHash</a></p>
+          </div>
+
+
+            <h3 id="distilled-transformers">Semantic Embedding via Distilled Transformers</h3>
+            <p>Currently, Spotlight search (which we'll be touching upon later) in Shortcuts is limited to literal keyword matching on titles or action names. This severely restricts discoverability—especially as user libraries grow and shortcuts become more complex.</p>
+            <p>A significant upgrade would be embedding each shortcut's DAG structure and metadata—including title, description, and action sequences—into a vector space using lightweight language models like TinyBERT or DistilBERT. This enables semantic search, allowing users to query naturally, e.g., <i>"routine after gym"</i> or <i>"log my mood at night"</i> and retrieve relevant shortcuts containing location exit triggers, music playback, or HealthKit updates.</p>
+            <p>With Apple's Neural Engine, these embeddings can be generated and queried entirely on-device, preserving user privacy. In fact, Apple already deploys similar models for Siri query parsing, iMessage reply suggestions, Spotlight result ranking</p>
+            <p>Embedding the Shortcut DAG into a semantic space unlocks contextual, intent-aware discovery—bridging the gap between natural language and visual automation.</p>
+          
+
+            <h3 id="a-star">Path Optimization Using A* Scheduling</h3>
+            <p>Complex shortcuts involving branches, forks, or deeply nested conditionals stand to benefit significantly from execution planning. Rather than blindly executing instructions in the order they're laid out, the Shortcuts engine could apply heuristic path planning—using algorithms like <a style="text-decoration: underline;" href="https://www.academia.edu/download/86006864/22.pdf" target="_blank" rel="noopener noreferrer">A* or greedy best-first search</a> to dynamically prioritize the most efficient execution path.</p>
+            <p>To make this work, we define a cost function of the form:</p>
+            <pre><code class="language-python">f(n) = g(n) + h(n)</code></pre>
+            <p>Here, g(n) is the cumulative cost to reach a node n so far, while h(n) is a heuristic estimate of the cost to complete the shortcut from node n to the goal. The actual cost g(n) can be computed using system-level profiling and might include Latency - For example, API calls like "Get Weather" can have varying network latency. Energy usage - Looping through 1,000 HealthKit entries isn't cheap. Failure risk - Some actions are more prone to fail (e.g., <i>"Get Contents of URL"</i> with flaky internet).</p>
+            <p>A basic scoring function might look like this:</p>
+            <pre><code class="language-python">g(n) = α * latency(n) + β * energy(n) + γ * failRisk(n)</code></pre>
+            <p>Where α, β, and γ are weight coefficients that can be tuned based on device context (battery level, connectivity, CPU load, etc.). The heuristic h(n) could be a simplified estimate—like the sum of minimal latencies on downstream nodes—or learned from historical runs of similar shortcuts.</p>
+            <p>Here's what the A* traversal might look like for a Shortcut DAG:</p>
+            <pre><code class="language-python">
+from heapq import heappush, heappop
+
+def a_star_shortcut_execution(graph, start, goal, cost_fn, heuristic):
+    open_set = []
+    heappush(open_set, (0, start))
+      
+    g_score = {start: 0}
+    came_from = {}
+  
+    while open_set:
+        current_cost, current = heappop(open_set)
+  
+        if current == goal:
+            return reconstruct_path(came_from, current)
+  
+        for neighbor in graph.neighbors(current):
+            tentative_g = g_score[current] + cost_fn(current, neighbor)
+            if neighbor not in g_score or tentative_g < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g
+                f_score = tentative_g + heuristic(neighbor)
+                heappush(open_set, (f_score, neighbor))
+            </code></pre>
+
+          </section>
+          
+          <section id="face-id">
+            <h2>The Face ID</h2>
+            <p> Face ID represents Apple’s real-world deployment of privacy-preserving, low-latency biometric authentication. Unlike traditional image-based verification, the system operates as a multi-stage matching graph, fusing IR depth mapping with temporal attention and occlusion handling. This case study explores the algorithms behind Face ID’s resilient matching—like GCN-based embedding comparison, CRF-style occlusion reasoning, and federated personalization—all orchestrated with hardware-aware data layouts and runtime scheduling optimized for mobile silicon.</p>
+
+
+            <h3 id="BMG">Face ID as Multi-Stage Biometric Matching Graph</h3>
+            <p>Face ID isn't a monolithic model—it's a tightly orchestrated pipeline composed of multiple neural sub-models and classifiers working in tandem. It all begins with the TrueDepth camera projecting a structured light pattern onto your face, generating a dense <a style="text-decoration: underline;" href="https://ieeexplore.ieee.org/abstract/document/9127813/" target="_blank" rel="noopener noreferrer">3D Point Cloud</a>. This isn't just some depth map—it's a full 3D mesh reconstruction.</p>
+            <p>That point cloud is then transformed into a high-dimensional facial embedding graph. Each node in this graph corresponds to clusters of facial landmarks—like the nose bridge, jawline, or eye contours—while the edges encode geometric and photometric relationships between them.</p>
+            <p>Importantly, this graph isn't traversed linearly. It's processed through a semi-directed acyclic graph (whose architecture and the overall workflow we went through earlier <a style="text-decoration: underline;" href="#dag">here</a>) execution model. Early in the pipeline, you'll find lightweight but critical classifiers: pose estimation and liveness detection. These act as gatekeepers—if your face isn't properly lit, oriented, or "alive," the deeper identity layers won't even run.</p>
+            <p>Once those checks pass, the identity verification stages kick in. These use coarse-to-fine filtering: shallow, fast models eliminate poor matches early, and deeper, more expensive models handle final matching. Think cascaded decision trees from the old-school days of face detection, but modernized with deep learning.</p>
+            <div class="image-container">
+            <img
+              src="apsassets/graphmatching.gif"
+              alt="Graph Matching GIF"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 4 : <a href="https://github.com/QuantEcon/MatchingMarkets.py" target="_blank" rel="noopener"> MatchingMarkets by QuantEconon GitHub</a></p>
+          </div>
+
+            <h3 id="graph-based-matching">Graph-Based Matching Using GCNs and Triplet Loss Embedding</h3>
+            <p>At the heart of Face ID's identity verification process is an embedding generator trained using triplet loss — feeding it three types of faces: anchor, positive, and negative. The goal? To pull similar faces closer in vector space and push dissimilar ones apart. Each face is mapped into an n-dimensional embedding, and identity is verified by computing cosine similarity between this vector and a reference stored in the Secure Enclave.</p>
+            <p>Modern systems don't stop at traditional CNNs. Instead, Graph Convolutional Networks (GCNs) are used to encode spatial relationships in the 3D face mesh. That's what gives Face ID robustness under partial occlusion — like when you're wearing a mask or your face is partially lit. Each node in the face graph corresponds to a region (e.g., jawline, nose tip), and edges capture curvature, texture variance, and facial symmetry. On top of this, contrastive learning helps the model generalize across lighting conditions and pose variations, improving reliability in the real world.</p>
+            <pre><code class="language-python">
+import torch
+import torch.nn.functional as F
+              
+def triplet_loss(anchor, positive, negative, margin=1.0):
+    pos_dist = F.pairwise_distance(anchor, positive, p=2)
+    neg_dist = F.pairwise_distance(anchor, negative, p=2)
+    loss = F.relu(pos_dist - neg_dist + margin)
+    return loss.mean()
+</code></pre>
+              <p>The <code lang="python">triplet_loss</code> function defines a training objective that encourages the model to map facial images of the same identity closer together in the embedding space while pushing different identities farther apart. This approach underpins the Face ID system's ability to perform high-accuracy identity recognition from a single stored facial reference.</p>
+              <p>During enrollment (when a user sets up Face ID), a reference facial embedding is computed and stored in the Secure Enclave. In authentication phases, a fresh scan is passed through the same embedding model, and the output is compared against the reference. The triplet loss model ensures that even with slight variations (e.g., lighting, beard growth, glasses), embeddings of the same person remain close in vector space. Apple likely uses a modified, high-dimensional version of this training approach using millions of anonymized facial scans with consent (in <a style="text-decoration: underline;" href="#federated-learning">Federated Learning</a> contexts) and ensures the margin in the triplet loss is calibrated based on false accept/reject rates.</p>
+              <p>This model can run on the Apple Neural Engine (ANE) with quantized versions of weights for efficient, on-device inference. It forms the core of Face ID's ability to balance accuracy and privacy—only the embedding is stored, never the image, and no cloud transmission occurs.</p>
+
+
+            <h3 id="occlusion-reasoning">Occlusion Reasoning with Conditional Random Fields</h3>
+            <p>Face ID's ability to work in poor lighting or when you're wearing glasses isn't just magic — it's probabilistic reasoning layered on top of computer vision. Specifically, <a style="text-decoration: underline;" href="https://www.nowpublishers.com/article/Details/MAL-013" target="_blank" rel="noopener noreferrer">Conditional Random Fields</a> (CRFs) are employed after facial landmark detection to handle occlusions and noise.</p>
+            <p>Think of it this way: each region of your face (eyes, nose, chin) is a node, and edges encode how likely a region is visible based on its neighbors. So if your nose is visible, the system can probabilistically infer that your upper lip probably is too — even if partially obscured. This helps Face ID "fill in the blanks" or simply down-weight the importance of occluded regions (like a covered jawline or shaded cheek).</p>
+            <p>The CRF effectively acts as a denoising post-processor: it refines the face's feature map before it goes through embedding generation. That refinement boosts reliability, especially in edge cases — like low light, tilted heads, or partial occlusion from glasses or masks.</p>
+            <div class="image-container">
+            <img
+              src="apsassets/conditionalRandomField.png"
+              alt="Conditional Random Field"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 5 : <a href="https://link.springer.com/article/10.1007/s10462-019-09793-6#citeas" target="_blank" rel="noopener"> A comprehensive review of conditional random fields: variants, hybrids and applications</a></p>
+          </div>
+
+            <h3 id="temporal-graph-analysis">Temporal Graph Analysis for Anti-Spoofing</h3>
+            <p>One of the most critical (and attack-prone) components of Face ID is liveness detection. It's what stops someone from unlocking your phone using a photo or a 3D-printed mask. Under the hood, Apple uses a <a style="text-decoration: underline;" href="https://arxiv.org/abs/2006.10637" target="_blank" rel="noopener noreferrer">temporal DAG</a>, where each node represents an observation at a point in time from the infrared and structured light sensors. These nodes track subtle movements — blinking, slight head tilts, micro-expressions — and are analyzed across short time intervals.</p>
+            <p>To efficiently verify that this motion data is real and continuous, Mo's algorithm-style interval queries to summarize local temporal changes makes the most sense. This approach is fast and memory-efficient, perfect for mobile hardware. A <a style="text-decoration: underline;" href="https://dl.acm.org/doi/abs/10.1145/502585.502630" target="_blank" rel="noopener noreferrer">Sliding Buffer</a> of recent frames is maintained, and motion aggregates are computed with persistent segment trees, allowing the system to verify that changes aren't just present, but temporally coherent — the kind of subtle variation that static images or masks simply can't fake.</p>
+            <pre><code class="language-python">
+from math import sqrt
+
+def mos_algorithm(events, queries):
+    n = len(events)
+    block_size = int(sqrt(n))
+    queries.sort(key=lambda x: (x[0] // block_size, x[1]))
+              
+    answers = [0] * len(queries)
+    count = [0] * 1001  # Assume event values are in range 0–1000
+    curr_l, curr_r, curr_answer = 0, 0, 0
+              
+    def add(idx):
+        nonlocal curr_answer
+        val = events[idx]
+        count[val] += 1
+        if count[val] == 1:
+            curr_answer += 1
+              
+    def remove(idx):
+        nonlocal curr_answer
+        val = events[idx]
+        count[val] -= 1
+        if count[val] == 0:
+            curr_answer -= 1
+              
+    for i, (l, r, idx) in enumerate(queries):
+        while curr_r <= r:
+            add(curr_r)
+            curr_r += 1
+        while curr_r > r + 1:
+            curr_r -= 1
+            remove(curr_r)
+        while curr_l < l:
+            remove(curr_l)
+            curr_l += 1
+        while curr_l > l:
+            curr_l -= 1
+            add(curr_l)
+        answers[idx] = curr_answer
+              
+    return answers
+              
+              </code></pre>
+              <p>Mo's algorithm, shown in the above code block, is an algorithm for efficiently answering range queries over a static array—especially useful when you need to query things like <i>"how many unique eye-blink micro-movements occurred in a 0.5 second window?"</i> The Face ID system uses temporal signals (captured via the infrared sensor and dot projector) to detect involuntary muscle movements, gaze shifts, and blink sequences—all of which contribute to liveness detection.</p>
+              <p>Since these signals arrive as a <a style="text-decoration: underline;" href="https://books.google.com/books?hl=en&lr=&id=o7jWV67165QC&oi=fnd&pg=PR5&dq=time+series+&ots=mrik-_Jb3r&sig=PXDuz5g1NwJ_yPRhS1lo3eqH2rw" target="_blank" rel="noopener noreferrer">Time Series</a>, Face ID segments them into discrete intervals and applies a Mo's-style sweep to aggregate features such as unique motion signatures, temporal consistency, and transition entropy. This avoids expensive real-time recomputation over each frame window. The "event" array in this case could represent encoded motion vectors or micro-expression hashes. Face ID uses such motion aggregation techniques to defend against spoofing attempts with static images, masks, or even high-resolution videos.</p>
+              <p>Mo's algorithm, with its square-root decomposition efficiency, ensures Face ID remains ultra-fast and responsive—one of the reasons it can operate in real-time under strict battery and performance constraints, especially on older iPhone hardware.</p>
+
+
+            <h3 id="runtime-scheduling">Runtime Scheduling via A Latency-Aware Execution</h3>
+            <p>Face ID doesn't always fire up its entire model pipeline — and that's by design. Given the thermal and battery constraints of mobile devices, it uses a latency-aware execution planner, similar in principle to A* search.</p>
+            <p>Each verification subroutine — from infrared image capture to 3D mesh generation to embedding projection — comes with an associated cost: time (in milliseconds), energy (battery drain), and even thermal load. Apple likely maintains cached execution profiles for different environments and conditions (e.g., indoor lighting vs sunlight, stationary vs motion) and uses a cost-to-go function to pick the most efficient valid verification path in real time.</p>
+            <p>This dynamic planning ensures that Face ID remains fast and power-efficient, even in suboptimal conditions. It's conceptually similar to adaptive prefetching used in Apple's AVFoundation, where only the most relevant media chunks are buffered based on playback context.</p>
+
+
+            <h3 id="secure-matching">Secure Matching with Bloom Filters and LSH Indexing</h3>
+            <p>When Face ID needs to match a newly generated facial embedding against stored identities — say, for unlocking multiple secure profiles — it doesn't brute-force search through all known vectors. Instead, it likely uses a Bloom Filter + LSH (Locality-Sensitive Hashing) hybrid.</p>
+            <p>The Bloom filter acts as a fast, probabilistic gatekeeper — eliminating embeddings that are definitely not a match without even needing a full comparison. The remaining candidates are grouped using <a style="text-decoration: underline;" href="https://arxiv.org/abs/2102.08942" target="_blank" rel="noopener noreferrer">LSH</a>, which clusters similar embeddings into the same hash buckets. From there, only a few candidates undergo precise cosine similarity checks.</p>
+            <p>This reduces the search complexity from O(n) to sublinear time, a massive performance gain on constrained mobile hardware. The same architectural principle underpins Apple's encrypted on-device search in apps like Photos and iMessage, where fast but private retrieval is key.</p>
+            <div class="image-container">
+            <img
+              src="apsassets/bloomFilterOverview.png"
+              alt="Bloom Filters Overview"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 6 : <a href="https://ricardoanderegg.com/posts/bloom-filters-poster/" target="_blank" rel="noopener"> rand[om] - Bloom filters explained in an image</a></p>
+          </div>
+
+            <h3 id="hardware-aware-data-layout">Hardware-Aware Data Layout via KD-Trees and Convex Hulls</h3>
+            <p>To run Face ID efficiently on Apple's Neural Engine (ANE) and GPU, the system doesn't process raw mesh data naively. Instead, it organizes 3D facial mesh data using spatial data structures like <a style="text-decoration: underline;" href="https://link.springer.com/chapter/10.1007/978-3-642-33281-4_15" target="_blank" rel="noopener noreferrer">KD Trees and convex hulls</a>.</p>
+            <p>The KD-tree partitions the point cloud to accelerate nearest-neighbor queries — for example, checking which facial landmarks have shifted since the last scan. This helps minimize redundant computation during dynamic tracking. Meanwhile, convex hull algorithms are applied to generate a simplified outer silhouette of the face. This silhouette is crucial for shadow mapping and reflection rejection, which are both common failure points under irregular lighting conditions.</p>
+            <p>These optimizations drastically reduce the workload for projection, occlusion testing, and inference, making the entire pipeline more performant and battery-friendly.</p>
+            <div class="image-container">
+            <img
+              src="apsassets/kdtree.png"
+              alt="KD Tree"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 7 : <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/KDtree.html" target="_blank" rel="noopener"> KD Trees by OpenDSA</a></p>
+          </div>
+
+            <h3 id="federated-learning">Federated Learning and Model Personalization</h3>
+            <p>Face ID doesn't stay static — it learns and adapts over time. This is achieved through federated learning, where only anonymized gradient updates — not raw face data — are periodically shared with Apple's servers to refine global models. The actual training occurs on-device, keeping your biometric data private.</p>
+            <p>Locally, Apple uses online training buffers to fine-tune the model for your specific face across time. These buffers are implemented using efficient data structures like ring buffers (to maintain recency) and priority queues (to retain the most informative scans). To avoid growing indefinitely and draining resources, these buffers are periodically downsampled using reservoir sampling, which ensures a diverse and representative set of facial variations (e.g., with glasses, different lighting, partial occlusion).</p>
+            <p>Federated learning is something I've been fascinated by. Here are some awesome resources to get a gist of it : An awesome <a style="text-decoration: underline;" href="https://github.com/weimingwill/awesome-federated-learning" target="_blank" rel="noopener noreferrer">GitHub repo</a> with great resources, A <a style="text-decoration: underline;" href="https://www.youtube.com/watch?v=j5e7bZLTMH0" target="_blank" rel="noopener noreferrer">video lecture</a> by Mike Rabbat for a quick get to know!</p>
+
+
+
+            <section id="spotlight">
+              <h2>Spotlight Search</h2>
+              <p> Spotlight is Apple’s answer to generalized information retrieval—but entirely on-device. It doesn’t just index files; it dynamically re-ranks, learns context, and returns zero-interaction predictions. This case study analyzes Spotlight as a production search engine, where inverted indices meet Mo’s algorithm-inspired filtering and HNSW-based semantic embedding graphs. We’ll explore how caching, hybrid indexing, and lightweight embedding models allow Spotlight to offer relevant, ranked results across heterogeneous domains—without needing to offload queries to the cloud.</p>
+  
+  
+              <h3 id="semantic-indexing">Real-Time Semantic Indexing Using Inverted Indices + LSM Trees</h3>
+              <p>Spotlight builds and maintains a semantic search index across multiple data domains — local files, messages, photos, calendar events, contacts, settings, apps, and even third-party data exposed via the CoreSpotlight API. Under the hood, each item is tokenized, normalized, and mapped into a domain-specific inverted index. This index connects search terms to document IDs, enriched with metadata like positional offsets, timestamps, and relevancy weights.</p>
+              <p>To handle real-time updates — like installing an app or editing a file — Spotlight leverages a <a style="text-decoration: underline;" href="https://link.springer.com/article/10.1007/s002360050048" target="_blank" rel="noopener noreferrer">Log-Structured Merge Tree</a> (LSM Tree). New data is first written to memory as sorted segments and later flushed to disk in batches. This keeps insertions fast and merges efficient, especially during idle cycles. Tokens themselves are organized in a trie structure, enabling prefix completion and fuzzy searches (so "docu" can still match "Documents").</p>
+              <pre><code class="language-python">
+from collections import defaultdict
+
+class TrieNode:
+    def __init__(self):
+        self.children = defaultdict(TrieNode)
+        self.doc_ids = set()
+                
+class InvertedIndex:
+    def __init__(self):
+        self.root = TrieNode()
+        self.index = defaultdict(set)  # term -> set(doc_ids)
+                
+    def tokenize(self, text):
+        return text.lower().split()
+                
+    def add_document(self, doc_id, text):
+        words = self.tokenize(text)
+        for word in words:
+            self.index[word].add(doc_id)
+            node = self.root
+            for char in word:
+                node = node.children[char]
+                node.doc_ids.add(doc_id)
+                
+    def search_prefix(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return set()
+            node = node.children[char]
+        return node.doc_ids
+                
+    def search_exact(self, word):
+        return self.index.get(word, set())
+              </code></pre>
+
+              <h3 id="query-planning">Query Planning with Mo's Algorithm for Efficient Filtering</h3>
+              <p>When you start typing a query in Spotlight, the system doesn't just naively scan everything — it intersects posting lists (from the inverted index) across multiple data domains to find relevant results. These posting lists are sets of document IDs where the query tokens appear. But here's where it gets clever: since users often type partial or incremental queries (like "ema", then "emai", then "email John"), Spotlight doesn't start from scratch every time.</p>
+              <p>Instead, Apple applies a Mo's algorithm-style (<a style="text-decoration: underline;" href="#temporal-graph-analysis">refer</a>) optimization. Originally used for efficiently answering range queries on static arrays, Mo's algorithm reorders queries to minimize recomputation. Spotlight adapts this idea by treating token matches as segments, reordering intersections by list size and access cost. This prioritizes smaller, cheaper joins and reuses results from previous queries — which drastically reduces the number of disk or memory reads.</p>
+              <p>In simpler terms: typing "email John" doesn't trigger a full search for every keystroke. It just builds incrementally on what's already been searched — optimizing for minimal change and sub-30ms feedback. This is exactly what you'd expect from a company optimizing for perceptual speed and battery life.</p>
+              <div class="image-container">
+            <img
+              src="apsassets/mosAlgo.png"
+              alt="Mo's Algorithm"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 8 : <a href="https://www.researchgate.net/figure/The-pipeline-of-the-MOS-algorithm-with-the-reconstruction-of-graph-signals-The-algorithm_fig2_346463471" target="_blank" rel="noopener"> Jhony H. Giraldo - Mo's Algorithm Pipeline</a></p>
+          </div>
+
+              <h3 id="embedding-based-ranking">Embedding-Based Ranking with Transformers and HNSW</h3>
+              <p>Spotlight uses a transformer-based encoder (similar to DistilBERT or Apple's internal TinyBERT variants) to embed both queries and document metadata into the same vector space. These dense vectors capture semantic similarity rather than just lexical overlap, enabling Spotlight to retrieve relevant but non-exact matches (e.g., "vacation" retrieving "trip").
+              The vectors are stored in an HNSW (Hierarchical Navigable Small World) graph, a high-performance approximate nearest neighbor index. When a query embedding is created, Spotlight queries the HNSW graph for the closest vectors, merging the semantic result list with the keyword-based results from the inverted index.
+              This dual-layer architecture (symbolic + vector search) mirrors what Microsoft, Google, and Apple deploy in their production ranking stacks—Spotlight likely uses a variant of CoreML for transformer inference on-device.</p>
+              <div class="image-container">
+            <img
+              src="apsassets/HNSWGraph.png"
+              alt="HNSW Graph"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 9 : <a href="https://medium.com/data-science/similarity-search-part-4-hierarchical-navigable-small-world-hnsw-2aad4fe87d37" target="_blank" rel="noopener"> Medium - Similarity Search, Part 4: Hierarchical Navigable Small World (HNSW)</a></p>
+          </div>
+              
+              <h3 id="zero-interaction-suggestion">Zero-Interaction Suggestions with Bloom Filters and Caching</h3>
+              <p>Before you even type a single character, Spotlight begins working behind the scenes. It surfaces context-aware suggestions—like recently opened files, apps you usually launch at that time, or popular past queries—using a combination of: Bloom filters (refer <a style="text-decoration: underline;" href="#simhash">here</a> and <a style="text-decoration: underline;" href="#secure-matching">here</a>) to quickly rule out irrelevant domains (e.g., you're unlikely to search "weather" in Contacts), LFU/LRU caches to rank based on your recent and frequent interactions and contextual signals like time, location, and foreground apps.
+              All of this happens on-device, under tight latency constraints—typically 10–20ms for first render. To achieve that, Spotlight avoids heavyweight models at this stage and instead uses pre-indexed data and lightweight memory structures like tries and bitmaps. It's a pragmatic, latency-first architecture designed for real-time interaction.</p>
+
+
+
+
+              <section id="airpods">
+                <h2>Apple's Airpods</h2>
+                <p> Apple’s wearables, led by AirPods, operate as distributed edge devices executing continuous context-aware decision-making. Whether routing notifications or repositioning audio spatially, these decisions are modeled as real-time search, classification, and optimization problems. This case investigates system design patterns used by AirPods: persistent segment trees for EQ personalization, A* search for attention-aware audio routing, and KD-trees for spatial audio calibration. The goal is to demystify how Apple turns low-power DSP hardware into adaptive, user-aware systems.</p>
+    
+    
+                <h3 id="context-aware-audio-graph">Context-Aware Adaptive Audio Graph for AirPods and Apple Wearables</h3>
+                Apple's AirPods ecosystem does more than just stream audio—it adapts sound output dynamically based on real-time environmental and physiological inputs. This responsiveness is enabled by a continuous data pipeline that collects inputs such as ambient sound, in-ear pressure, head and body motion, and skin temperature from devices like AirPods and the Apple Watch.
+                These multimodal signals are organized using a Directed Acyclic Graph (<a style="text-decoration: underline;" href="#DAG">DAG</a>), where each node represents a snapshot from a specific sensor modality (e.g., a noise level reading from the left microphone or a gyroscope vector). Edges in this graph represent either temporal transitions or co-activations—capturing patterns such as sudden movement combined with a spike in environmental noise.
+                To convert this stream of context into actionable features, Apple employs a sliding window event encoder. This technique aggregates short sequences from the DAG into feature embeddings, which are then used to modulate playback behavior—such as switching between Transparency Mode, Active Noise Cancellation (ANC), or Spatial Audio. To ensure this system operates efficiently on-device, Apple applies interval pruning and differential encoding to compress the graph. These methods reduce redundant nodes and encode changes rather than absolute values, similar to how motion data is optimized in Apple's fitness tracking. This not only conserves computational resources but also improves the user experience by reducing unnecessary or erroneous mode switches.</p>
+
+
+                <h3 id="persistent-segment-tree">Personalized EQ Optimization via Persistent Segment Trees</h3>
+                <p>One of the subtler aspects of Apple's audio personalization system lies in how it adapts to individual user behavior over time—particularly when it comes to volume and equalizer (EQ) settings. Users often make small, context-driven adjustments—raising the volume slightly during a commute, or boosting treble when walking near traffic—without consciously noticing the pattern. Apple uses these micro-adjustments as implicit feedback signals.
+                To model and store these evolving preferences, the system utilizes a persistent segment tree, a data structure well-suited for scenarios involving <a style="text-decoration: underline;" href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781315119335-33/persistent-data-structures-haim-kaplan" target="_blank" rel="noopener noreferrer">frequent lookups and occasional updates</a>. The tree is indexed by contextual conditions (such as location, physical activity, and background noise) and maps them to EQ parameters (bass, mid, and treble gain values).
+                For example, if a user consistently adjusts the treble gain while walking outdoors near high traffic noise, the system stores this as a persistent mapping. This enables the AirPods to predict and apply those EQ settings automatically the next time similar conditions are encountered.
+                Persistence is achieved through a copy-on-write memory layout, where only modified segments are duplicated. This approach allows the system to roll back to previous states if needed, without recreating the entire structure. It also keeps energy consumption low—a critical factor for real-time processing on resource-constrained devices like the H1 or H2 chips.</p>
+                <div class="image-container">
+            <img
+              src="apsassets/persistentSegmentTree.jpg"
+              alt="Persistent Segment Tree"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 10 : <a href="https://www.geeksforgeeks.org/introduction-to-segment-trees-2/" target="_blank" rel="noopener"> GeeksforGeeks - Introduction to Segment Trees</a></p>
+          </div>
+
+
+                <h3 id="attention-aware-routing">Attention-Aware Notification Routing via A*-Search</h3>
+                <p>In multi-device environments, systems must intelligently decide how to deliver a notification: through audio, haptic feedback, or visual alerts—depending on user context and device availability. This decision process can be modeled as a weighted notification routing graph, where each node represents a (device, modality) pair such as "watch + haptic" or "earbuds + speech alert."
+                Edges in this graph carry transition costs, capturing trade-offs like latency, user disruption, and battery impact. The system performs an A*-based search across the graph, guided by context-aware heuristics. Sensor data such as ambient noise levels, motion status, or focus mode state helps shape these heuristics dynamically. For example, if the user is walking outdoors with high background noise, auditory alerts may be deprioritized in favor of haptic or visual modes.</p>
+                <p>Each candidate path through the graph is scored using a hybrid cost function that combines factors like:
+                  <ul>
+                    <li>Cognitive Load: How interruptive is the method?</li>
+                    <li>Urgency: How critical is timely delivery?</li>
+                    <li>Perceptibility: Will the user actually notice the alert?</li>
+                  </ul></p>
+                  <p>By incorporating dynamic node activation (i.e., only considering delivery modes relevant to current context) and adaptive heuristics, this approach ensures that notifications are routed effectively with minimal friction—enhancing responsiveness while respecting user attention.</p>
+                  <div class="image-container">
+            <img
+              src="apsassets/Astarpathfinding.gif"
+              alt="A* Search"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 11 : <a href="https://commons.wikimedia.org/wiki/File:Astarpathfinding.gif" target="_blank" rel="noopener"> Wikimedia - A* Path Finding</a></p>
+          </div>
+
+                <h3 id="audio-anti-spoofing">Audio Anti-Spoofing via GNN on Acoustic Graph</h3>
+                <p>Remember Face ID? Remember how we discussed tackling facial spoofing via pictures and videos? Audio spoofing runs on similar lines, although not too similar as to not warrant its own subsection. In voice-based security systems, especially those operating continuously in the background, it's essential to verify not just what is being said, but who is saying it. This requires analyzing subtle acoustic patterns over time—variations that are often unique to a user's vocal tract.
+                One effective approach is to model incoming audio as a graph, where each node represents a short-time frame of audio features—such as pitch, Mel-frequency cepstral coefficients (MFCCs), or phase coherence. Edges connect temporally adjacent frames or acoustically similar ones, forming a quasi-temporal graph that captures both local transitions and long-term vocal patterns.
+                A Graph Neural Network (GNN) trained on this structure can perform node classification to identify whether the voice input matches a known profile or exhibits signs of tampering. For example, replay attacks or synthesized speech often produce unnatural transitions or spectral signatures, which the GNN can learn to flag as anomalies.
+                Edges in the graph carry time-delay weights, encoding how far apart in time two frames are. This allows the model to learn not just spectral content but also rhythm and temporal consistency—key in distinguishing live human speech from artificial sources. While real-time implementations may simplify this pipeline for latency and power efficiency, the underlying graph-based model offers a scalable framework for secure, passive authentication through voice alone.</p>
+
+
+                <h3 id="retrospective-interactive-mining">Mo's Algorithm for Retrospective Interaction Mining</h3>
+                <p>Identifying user behavior patterns on-device—without draining battery or compromising privacy—requires efficient, localized computation. One practical approach is to use Mo's algorithm over a ring-buffered log of user interactions, such as swipes, taps, or voice commands
+                <a style="text-decoration: underline;" href="#temporal-graph-analysis">Mo's algorithm</a> is well-suited for this task because it supports fast, offline range queries over immutable data. In this context, the interaction log is chronologically sorted and chunked by activity type. When the system needs to answer questions like "How frequently does the user activate Transparency Mode during commute hours?" Mo's algorithm can process these block-level frequency queries in O(√n) time, even on resource-constrained devices.
+                To ensure low memory overhead, the interaction log is stored in a ring buffer, where older entries are overwritten once capacity is reached. This bounded approach keeps the memory footprint predictable while allowing pattern detection in recent behavior windows.
+                Once a behavioral pattern is identified, the results are passed to a lightweight recommendation module. This engine doesn't overtly notify the user—instead, it performs subtle adjustments like preemptively switching audio modes during recurring routines. Similar optimization patterns are already used in fitness and health tracking pipelines, where continuous learning operates under strict energy and privacy constraints.
+
+
+                <h3 id="wake-word-duplication">Bloom Filter-Based Wake Word Deduplication</h3>
+                <p>In multi-device ecosystems, wake-word detection (e.g., "Hey Siri") introduces the challenge of response duplication, where several nearby devices may react to the same voice command simultaneously. To resolve this, a probabilistic coordination mechanism can be employed using <a style="text-decoration: underline;" href="#temporal-graph-analysis">Bloom Filters</a>.
+                Each participating device maintains a Bloom filter seeded with hashed voiceprint snapshots and device state metadata. When a wake phrase is detected, the device first checks the filter: if a matching signature already exists—suggesting another device has recently responded—it suppresses its own reaction. This helps ensure that only one device responds per invocation, without needing centralized control.
+                Filters are periodically merged across devices using low-energy BLE multicast, enabling fast, decentralized coordination. Since Bloom filters are space-efficient and support constant-time membership checks, they're well-suited for real-time processing on devices with limited compute and memory.
+                The system trades off a small chance of false positives for speed and efficiency, but the filters are tuned to maintain tight false-positive bounds, minimizing the chance of suppressing legitimate responses. With frequent updates and efficient communication via BLE, this approach enables scalable wake-word arbitration without overloading any single device or requiring external servers.</p>
+                <div class="image-container">
+            <img
+              src="apsassets/bloomFilter.png"
+              alt="Bloom Filter"
+              class="responsive-image"
+              width="500"
+              height="225"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 12 : <a href="https://www.researchgate.net/figure/An-example-of-Bloom-filter_fig2_331174392" target="_blank" rel="noopener"> ResearchGate - A Filter-Based Design of Pending Interest Table in Named Data Networking</a></p>
+          </div>
+
+                <h3 id="spatial-audio">KD-Tree Assisted Spatial Audio Personalization</h3>
+                <p>Realistic spatial audio relies on accurately modeling how sound interacts with the listener's head and ears—a property described by the Head-Related Transfer Function (HRTF). Because these acoustical responses vary across individuals, delivering convincing 3D audio often requires a personalized HRTF.
+
+                  To enable real-time customization, one efficient approach is to use a KD-tree to organize a precomputed set of HRTF samples, each representing a different head geometry and ear shape. When a new user is onboarded or re-scanned—using facial depth sensors or camera-based head tracking—their measurements are compared against this KD-tree. The structure allows for logarithmic-time nearest neighbor search, making it practical to match a user's profile to the closest available HRTF entry on-device.
+                  
+                  Once matched, interpolation techniques can blend nearby samples to generate a smooth, individualized HRTF. This enables the system to deliver binaural audio rendering that aligns with the user's spatial perception.
+                  
+                  To further enhance perceptual continuity, Voronoi cell approximation can be used in conjunction with the KD-tree. As the user moves or changes orientation, this allows seamless transitions between HRTF zones without perceptible artifacts, maintaining immersion and realism.
+                  
+                  By combining geometric data structures with perceptual modeling, the system efficiently bridges hardware capabilities and personalized audio rendering.</p>
+                  <pre><code class="language-python">from typing import List, Tuple, Optional
+import math
+import heapq
+
+class KDNode:
+    def __init__(self, point: Tuple[float, ...], axis: int, left: 'KDNode' = None, right: 'KDNode' = None):
+        self.point = point
+        self.axis = axis
+        self.left = left
+        self.right = right
+
+class KDTree:
+    def __init__(self, k: int):
+        self.k = k
+        self.root: Optional[KDNode] = None
+
+    def build(self, points: List[Tuple[float, ...]], depth: int = 0) -> Optional[KDNode]:
+        if not points:
+            return None
+        axis = depth % self.k
+        points.sort(key=lambda x: x[axis])
+        mid = len(points) // 2
+        node = KDNode(
+            point=points[mid],
+            axis=axis,
+            left=self.build(points[:mid], depth + 1),
+            right=self.build(points[mid + 1:], depth + 1)
+        )
+        if depth == 0:
+            self.root = node
+        return node
+
+    def insert(self, root: Optional[KDNode], point: Tuple[float, ...], depth: int = 0) -> KDNode:
+        if root is None:
+            return KDNode(point, depth % self.k)
+        axis = root.axis
+        if point[axis] < root.point[axis]:
+            root.left = self.insert(root.left, point, depth + 1)
+        else:
+            root.right = self.insert(root.right, point, depth + 1)
+        return root
+
+    def range_search(self, root: Optional[KDNode], rect: List[Tuple[float, float]], found: List[Tuple[float, ...]]) -> None:
+        if root is None:
+            return
+        inside = all(rect[d][0] <= root.point[d] <= rect[d][1] for d in range(self.k))
+        if inside:
+            found.append(root.point)
+
+        axis = root.axis
+        if root.left and root.point[axis] >= rect[axis][0]:
+            self.range_search(root.left, rect, found)
+        if root.right and root.point[axis] <= rect[axis][1]:
+            self.range_search(root.right, rect, found)
+
+    def nearest_neighbor(self, root: Optional[KDNode], target: Tuple[float, ...],
+                         depth: int = 0, best: List[Tuple[float, Tuple[float, ...]]] = None) -> Tuple[float, Tuple[float, ...]]:
+        if root is None:
+            return best[0] if best else (float('inf'), None)
+
+        axis = root.axis
+        dist = math.dist(root.point, target)
+        if not best or dist < best[0][0]:
+            best = [(dist, root.point)]
+
+        next_branch = root.left if target[axis] < root.point[axis] else root.right
+        other_branch = root.right if next_branch is root.left else root.left
+
+        best = [self.nearest_neighbor(next_branch, target, depth + 1, best)]
+
+        if abs(root.point[axis] - target[axis]) < best[0][0]:
+            best = [min(best[0], self.nearest_neighbor(other_branch, target, depth + 1, best))]
+
+        return best[0]
+
+if __name__ == "__main__":
+    points = [(2, 3), (5, 4), (9, 6), (4, 7), (8, 1), (7, 2)]
+    kdtree = KDTree(k=2)
+    kdtree.build(points)
+
+    # Insert a new point
+    kdtree.root = kdtree.insert(kdtree.root, (3, 5))
+
+    # Range search within rectangle [(x_min, x_max), (y_min, y_max)]
+    result = []
+    kdtree.range_search(kdtree.root, rect=[(2, 6), (2, 6)], found=result)
+    print("Range Search:", result)
+
+    # Nearest neighbor to (9,2)
+    distance, nearest = kdtree.nearest_neighbor(kdtree.root, (9, 2))
+    print("Nearest Neighbor:", nearest, "Distance:", distance)</code></pre>
+              
+                </section>
+
+
+              <section id="imessage">
+
+                <h2>iMessages</h2>
+                <p>Apple's iMessage stands apart not just because it's encrypted or exclusive to Apple devices—but because it integrates messaging with the entire Apple ecosystem in ways that are real-time, adaptive, and user-intent sensitive. While I have not used and worked with iMessage as extensively as the other case studies, I'll try my best to address all of its aspects from a DS and algorithms point of view. This case focuses on the technical challenges iMessage solves in its own peculiar(?) way. We'll explore how these are implemented using grounded, feasible algorithms and data structures.</p>
+      
+      
+                <h3 id="graph-state-synchronization">End-to-End Encrypted Graph State Synchronization</h3>
+                <p>In contrast to centralized messaging systems, decentralized platforms with end-to-end encryption must manage data consistency without exposing content to intermediary servers. One effective strategy is to use a Merkle tree to represent message history across devices.
+
+                  In this model, each message thread is represented as a leaf node, with parent nodes summarizing message segments through cryptographic hashes. When a message is added, edited, or deleted, only the affected branches of the tree need to be recalculated. Devices compare root hashes—often via secure channels like iCloud Keychain—to detect divergence, and then synchronize only the changed portions (deltas). This approach keeps updates lightweight and maintains full privacy, as no server ever holds complete message content.
+                  
+                  To resolve conflicting operations across devices—such as editing a message on one device while deleting it on another—the system incorporates vector clocks. These track causal relationships between events across devices, enabling precise conflict resolution without overwriting valid user intent.
+                  
+                  By combining Merkle trees for structural integrity with vector clocks for temporal consistency, this sync model achieves high reliability and strong privacy guarantees in a decentralized, multi-device environment.</p>
+              
+
+                <h3 id="dynamic-embedding-index">Smart Replies Using Trie + Dynamic Embedding Index</h3>
+                <p>Smart reply systems aim to offer relevant, context-aware suggestions in real time—without sacrificing responsiveness or user privacy. A practical way to achieve this on-device is through a hybrid architecture that combines Trie-based pattern matching with semantic search over transformer-generated embeddings.
+
+                  The system begins by organizing frequently seen messages and their corresponding replies into a <a style="text-decoration: underline;" href="https://link.springer.com/article/10.1007/BF02679623" target="_blank" rel="noopener noreferrer">Trie structure</a>, segmented by semantic intent categories such as greetings, confirmations, or scheduling responses. When a new message is received, it is first tokenized and checked against the trie using prefix matching. This allows for near-instant lookup of commonly used replies.
+                    
+                  To provide deeper context awareness, the system then passes the incoming message through a lightweight, on-device language model—likely a distilled transformer. The resulting embedding is compared against a bank of precomputed reply embeddings using a cosine similarity index, implemented with efficient structures such as HNSW (Hierarchical Navigable Small World graphs) or Faiss for fast approximate nearest neighbor search.
+                    
+                  This two-layer system—fast trie matching for structure, and vector search for nuance—enables responsive, personalized smart replies entirely offline. The entire pipeline is optimized for local execution, likely accelerated by specialized hardware such as the Apple Neural Engine (ANE), ensuring user data never leaves the device while maintaining high-quality suggestions.</p>
+                  <div class="image-container">
+            <img
+              src="apsassets/trieSearch.gif"
+              alt="Trie Search"
+              class="responsive-image"
+              loading="lazy"
+            />
+            <p class="image-source", style="text-align: center;"> Image 13 : <a href="https://medium.com/smucs/trie-data-structure-fd2de3304e6e" target="_blank" rel="noopener"> Medium - Trie Data Structure</a></p>
+          </div>
+
+
+                <h3 id="a-star-network-weights">Message Delivery Graph Using A* with Network Weights</h3>
+                <p>When a message is sent through a decentralized, multi-device system, it must be delivered intelligently—not just to the recipient, but to the right device at the right time. In ecosystems where a single user may have an iPhone, iPad, MacBook, Apple Watch, and even a HomePod, choosing the optimal delivery path is a nontrivial routing problem.
+
+                  This challenge can be modeled as a device communication graph, where each node represents a device and edges are weighted by context-sensitive costs, including:</p>
+                  <ul>
+                    <li>Estimated power consumption</li>
+                    <li>Time since last wake event</li>
+                    <li>Latency to cloud relay or direct peer</li>
+                    <li>Device priority status (e.g., Do Not Disturb or screen-off state)</li>
+                  </ul>
+
+                <p>To identify the optimal delivery route, the system performs an A*-based search, using a heuristic that minimizes latency to visible delivery—ensuring that the message appears first on the device the user is currently engaged with. This is particularly important in asymmetric network environments: for instance, the Watch may be technically reachable first but not suitable for immediate display due to screen or notification state.
+
+                  This graph is highly dynamic, reflecting changes in device activity, network availability (Wi-Fi, Bluetooth, iCloud relay), and contextual factors like battery level. The A* search efficiently balances speed, energy usage, and visibility to prioritize meaningful delivery without redundant wake-ups across the device cluster.
+                  
+                  By adapting traditional graph search to real-time device coordination, the system ensures that messages arrive where they'll matter most—quickly, and with minimal resource impact.
+                </p>
+                  
+
+                <h3 id="intent-recognition">GNN-Based Intent Recognition from Multimodal Threads</h3>
+                <p>Modern messaging platforms increasingly integrate features beyond simple text exchange—such as smart scheduling, payment handling, and contact recognition. To enable these capabilities contextually and efficiently, a graph-based approach can be used to model ongoing conversations.
+
+                  In this system, each message is represented as a node in a dynamic Graph Neural Network (GNN). Named entities—like people, dates, dollar amounts, and URLs—are connected as attribute nodes, forming an evolving relational graph as the conversation progresses.
+                  
+                  Embeddings are learned over this structure to support real-time feature detection, including:</p>
+                <ul>
+                  <li>Calendar suggestions triggered by intent phrases like <i>"Want to grab dinner Friday?"</i></li>
+                  <li>Inline payment prompts in response to messages like <i>"Send me $12"</i></li>
+                  <li>Contact autofill when a user types something like <i>"Here's John's number"</i></li>
+                </ul>
+                <p>
+                  The GNN is trained using self-supervised techniques, such as masked node prediction (to infer missing data points) and link prediction (to model potential relationships between message entities). This allows the model to learn contextual semantics without needing manual labeling.
+                </p>
+
+
+                <h3 id="count-min-sketch">Count-Min Sketch for Spam and Repeated Phrase Detection</h3>
+                <p>To manage spam and repetitive low-quality content—such as promotional links or bot-generated messages—messaging systems can't rely solely on deep natural language processing, especially when operating under strict privacy constraints. A more efficient alternative is the use of a Count-Min Sketch.
+
+                  This probabilistic data structure enables space-efficient frequency estimation without storing actual message content. Each incoming message or tokenized phrase is hashed into the sketch, incrementing counters associated with multiple hash functions. By tracking frequencies of specific phrases, URLs, or syntactic patterns, the system can identify and suppress repeated content.
+                  
+                  When thresholds are exceeded, the UI may auto-collapse redundant messages, remove link previews, or deprioritize the conversation—without needing to parse message content in full. This approach enables real-time filtering while upholding end-to-end encryption and on-device privacy guarantees.
+                  
+                  Count-Min Sketch is particularly suited for this role due to its low memory footprint, fast query time, and resistance to false negatives—making it an ideal fit for both on-device inference and cloud relay-level filtering within a privacy-first architecture.
+                </p>
+                <pre><code class="language-python">class CountMinSketch:
+    def __init__(self, width: int, depth: int, seed: int = 42):
+        self.width = width
+        self.depth = depth
+        self.seed = seed
+        self.table = np.zeros((depth, width), dtype=int)
+        self.hash_seeds = [self.seed + i for i in range(depth)]
+
+    def _hash(self, item: str, i: int) -> int:
+        return mmh3.hash(item, self.hash_seeds[i]) % self.width
+
+    def add(self, item: str):
+        for i in range(self.depth):
+            idx = self._hash(item, i)
+            self.table[i][idx] += 1
+
+    def estimate(self, item: str) -> int:
+        return min(self.table[i][self._hash(item, i)] for i in range(self.depth))
+
+    def exceeds_threshold(self, item: str, threshold: int) -> bool:
+        return self.estimate(item) >= threshold
+
+
+class SpamFilter:
+    def __init__(self, width=5000, depth=5, threshold=10):
+        self.cms = CountMinSketch(width, depth)
+        self.threshold = threshold
+
+    def process_message(self, message: str) -> bool:
+        tokens = message.lower().split()
+        for token in tokens:
+            self.cms.add(token)
+        return any(self.cms.exceeds_threshold(token, self.threshold) for token in tokens)
+
+
+filter = SpamFilter()
+messages = [
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!",
+    "Check out this amazing offer!"
+]
+
+results = [filter.process_message(msg) for msg in messages]
+results
+
+</code></pre>
+
+
+                <h3 id="notifs-scheduling-segment-tree">Notification Scheduling with Persistent Segment Trees</h3>
+                <p>
+                  Notification delivery isn't just about what to alert—it's also about when and how. Modern systems must decide whether a message should trigger a vibration, a banner, or remain silent, based on contextual cues like:</p>
+                <ul>
+                  <li>The sender's identity (e.g., a known contact vs. a marketing bot)</li>
+                  <li>Time of day (work hours vs. late night)</li>
+                  <li>The foreground app (e.g., in a game vs. in a productivity app)</li>
+                  <li>Device state (such as whether AirPods are connected or not)</li>
+                </ul>
+                <p>
+                  To manage this complexity, a persistent segment tree is used to model notification priority levels across overlapping contextual conditions. Each node in the tree represents a conditionally weighted rule—such as <i>"silent if sender is non-contact during active Focus mode"</i>. As user context changes, the system traverses the tree to determine the appropriate alert behavior.
+                  
+                  Persistence allows iOS to rewind to previous tree states—for example, reverting to default behavior once a temporary context like "Work Focus" ends. This versioning also supports explainability and rollback in dynamic notification models.
+                </p>
+
+              </section>
+
+              <section id="complexity-analysis">
+                <h2>Complexity Analysis and Summary of Mentioned Data Structures and Algorithms</h2>
+                <p>Below is a comprehensive analysis of the time and space complexity for the key data structures and algorithms mentioned in this portfolio:</p>
+                
+                <div class="table-container">
+                <table>
+  <thead>
+    <tr>
+      <th>Data Structure / Algorithm</th>
+      <th>Application(s)</th>
+      <th>Use Case</th>
+      <th>Key Operations</th>
+      <th>Avg. Time</th>
+      <th>Worst-Case Time</th>
+      <th>Space</th>
+      <th>Notes / Trade-offs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>A* Search</strong></td>
+      <td>Shortcuts, iMessage, AirPods</td>
+      <td>Finds the most efficient execution path in complex workflows and intelligently routes messages and notifications.</td>
+      <td>Pathfinding</td>
+      <td><code>O(E)</code></td>
+      <td><code>O(E)</code></td>
+      <td><code>O(V)</code></td>
+      <td>Heuristic-based search. Performance depends on heuristic quality; can degrade to <code>O(E + V log V)</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Bloom Filter</strong></td>
+      <td>Shortcuts, Face ID, AirPods</td>
+      <td>Flags known-bad execution patterns, acts as a probabilistic gatekeeper for secure matching, and deduplicates wake word activations.</td>
+      <td>Add, Check</td>
+      <td><code>O(k)</code></td>
+      <td><code>O(k)</code></td>
+      <td><code>O(m)</code></td>
+      <td>Probabilistic set membership. No false negatives, but has false positives. k=hash functions, m=array size.</td>
+    </tr>
+    <tr>
+      <td><strong>Caching (LRU/LFU)</strong></td>
+      <td>Spotlight Search</td>
+      <td>Ranks zero-interaction suggestions based on recent (LRU) and frequent (LFU) user interactions.</td>
+      <td>Get, Put</td>
+      <td><code>O(1)</code></td>
+      <td><code>O(1)</code></td>
+      <td><code>O(C)</code></td>
+      <td>Manages a fixed-size cache (capacity C). Implemented with a hash map and linked list.</td>
+    </tr>
+    <tr>
+      <td><strong>Conditional Random Fields (CRF)</strong></td>
+      <td>Face ID</td>
+      <td>A probabilistic model for occlusion reasoning, inferring obscured facial features from visible ones.</td>
+      <td>Inference, Training</td>
+      <td><code>O(L*S²)</code></td>
+      <td><code>O(L*S²)</code></td>
+      <td><code>O(S²)</code></td>
+      <td>Powerful for sequence labeling. L=sequence length, S=states.</td>
+    </tr>
+    <tr>
+      <td><strong>Convex Hull</strong></td>
+      <td>Face ID</td>
+      <td>Generates a simplified outer silhouette of a face to help reject shadows and irregular lighting.</td>
+      <td>Compute</td>
+      <td><code>O(N log N)</code></td>
+      <td><code>O(N log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Finds the smallest convex polygon enclosing a set of N points.</td>
+    </tr>
+    <tr>
+      <td><strong>Count-Min Sketch</strong></td>
+      <td>iMessage</td>
+      <td>Detects spam by estimating phrase frequency in real-time without storing message content.</td>
+      <td>Update, Estimate</td>
+      <td><code>O(1)</code></td>
+      <td><code>O(1)</code></td>
+      <td><code>O(w &times; d)</code></td>
+      <td>Probabilistic structure for frequency counting. Guarantees no under-estimation. w=width, d=depth.</td>
+    </tr>
+    <tr>
+      <td><strong>Directed Acyclic Graph (DAG)</strong></td>
+      <td>Shortcuts, AirPods</td>
+      <td>Models executable workflows with data dependencies; Represents multimodal sensor data flow for context-aware audio.</td>
+      <td>Traversal, Sort</td>
+      <td><code>O(V+E)</code></td>
+      <td><code>O(V+E)</code></td>
+      <td><code>O(V+E)</code></td>
+      <td>Ideal for representing dependencies without cycles. V=vertices, E=edges.</td>
+    </tr>
+    <tr>
+      <td><strong>Federated Learning</strong></td>
+      <td>Face ID</td>
+      <td>A machine learning paradigm to collaboratively train and improve global models without sharing user data.</td>
+      <td>N/A (Training)</td>
+      <td colspan="3" style="text-align: center;">N/A</td>
+      <td>A privacy-preserving training methodology, not a standard algorithm with Big-O complexity.</td>
+    </tr>
+    <tr>
+      <td><strong>Graph Neural Network (GNN)</strong></td>
+      <td>Face ID, AirPods, iMessage</td>
+      <td>Performs matching on facial landmark graphs, anti-spoofing on acoustic graphs, and intent recognition on message threads.</td>
+      <td>Inference, Propagation</td>
+      <td><code>O(V+E)</code></td>
+      <td><code>O(V²)</code></td>
+      <td><code>O(V+E)</code></td>
+      <td>Captures relationships in graph data. Complexity varies with graph density.</td>
+    </tr>
+    <tr>
+      <td><strong>HNSW Index</strong></td>
+      <td>iMessage, Spotlight</td>
+      <td>Finds semantically similar replies from vector embeddings and ranks search results based on semantic similarity.</td>
+      <td>ANN Search</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>State-of-the-art for fast, high-recall approximate nearest neighbor (ANN) search in vector spaces.</td>
+    </tr>
+    <tr>
+      <td><strong>Huffman Coding</strong></td>
+      <td>AirPods</td>
+      <td>Used for lossless data compression, such as compressing graph data for efficient transmission.</td>
+      <td>Build Tree, Encode</td>
+      <td><code>O(N log N)</code></td>
+      <td><code>O(N log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Creates optimal variable-length prefix codes based on symbol frequency.</td>
+    </tr>
+    <tr>
+      <td><strong>Inverted Index</strong></td>
+      <td>Spotlight Search</td>
+      <td>Core structure for full-text search, mapping content tokens to their locations in documents.</td>
+      <td>Indexing, Search</td>
+      <td><code>O(L)</code></td>
+      <td><code>O(D)</code></td>
+      <td><code>O(T*D)</code></td>
+      <td>The backbone of search engines. L=query length, D=docs, T=tokens.</td>
+    </tr>
+    <tr>
+      <td><strong>KD-Tree</strong></td>
+      <td>Face ID, AirPods</td>
+      <td>Organizes 3D facial mesh data to accelerate nearest-neighbor queries and finds the closest personalized HRTF for spatial audio.</td>
+      <td>Build, Search</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Space-partitioning structure. Performance degrades in very high dimensions.</td>
+    </tr>
+    <tr>
+      <td><strong>LSM Tree</strong></td>
+      <td>Spotlight Search</td>
+      <td>Handles high-throughput, real-time writes to the search index by batching updates.</td>
+      <td>Insert, Merge</td>
+      <td><code>O(1)</code> (amortized)</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Optimized for write-heavy workloads at the cost of slower read performance compared to B-Trees.</td>
+    </tr>
+    <tr>
+      <td><strong>Merkle Tree</strong></td>
+      <td>iMessage</td>
+      <td>Synchronizes end-to-end encrypted message history across devices by efficiently verifying data integrity.</td>
+      <td>Update, Verify</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Allows for efficient data verification by sending only hash-based deltas.</td>
+    </tr>
+    <tr>
+      <td><strong>Mo's Algorithm</strong></td>
+      <td>Spotlight, AirPods, Face ID</td>
+      <td>Efficiently answers incremental filtering queries and mines user interaction patterns from logs.</td>
+      <td>Range Query</td>
+      <td><code>O((N+Q)√N)</code></td>
+      <td><code>O((N+Q)√N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>An offline algorithm for range queries that reorders queries to minimize re-computation.</td>
+    </tr>
+    <tr>
+      <td><strong>Persistent Segment Tree</strong></td>
+      <td>AirPods, iMessage</td>
+      <td>Stores and models evolving user EQ preferences and manages notification priority rules across changing contexts.</td>
+      <td>Query, Update</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N log N)</code></td>
+      <td>Allows for efficient versioning and history tracking with low update overhead (copy-on-write).</td>
+    </tr>
+    <tr>
+      <td><strong>Priority Queue</strong></td>
+      <td>Face ID</td>
+      <td>Used to retain the most "informative" face scans in the on-device training buffer for model personalization.</td>
+      <td>Insert, Extract-Max</td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(log N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Maintains a collection of items with priorities. Often implemented with a binary heap.</td>
+    </tr>
+    <tr>
+      <td><strong>Reservoir Sampling</strong></td>
+      <td>Face ID</td>
+      <td>Selects a uniform random sample of items from a data stream of unknown size for on-device training.</td>
+      <td>Select Sample</td>
+      <td><code>O(N)</code></td>
+      <td><code>O(N)</code></td>
+      <td><code>O(k)</code></td>
+      <td>Allows for fixed-size (k) sampling from a large stream (N) in a single pass.</td>
+    </tr>
+    <tr>
+      <td><strong>SimHash / LSH</strong></td>
+      <td>Shortcuts, Face ID</td>
+      <td>Generates fingerprints of data (shortcut graphs, facial embeddings) to find similar items quickly.</td>
+      <td>Hash, Compare</td>
+      <td><code>O(d)</code></td>
+      <td><code>O(d)</code></td>
+      <td><code>O(d)</code></td>
+      <td>Locality-Sensitive Hashing (LSH) maps similar items to the same hash "buckets" with high probability.</td>
+    </tr>
+    <tr>
+      <td><strong>Sliding / Ring Buffer</strong></td>
+      <td>Face ID, AirPods</td>
+      <td>Maintains a fixed-size, first-in-first-out buffer of recent data from a stream for temporal analysis.</td>
+      <td>Add/Push, Read</td>
+      <td><code>O(1)</code></td>
+      <td><code>O(1)</code></td>
+      <td><code>O(W)</code></td>
+      <td>Highly efficient for processing data in a moving window of size W.</td>
+    </tr>
+    <tr>
+      <td><strong>Trie</strong></td>
+      <td>iMessage, Spotlight</td>
+      <td>Provides instant lookups for common phrases in Smart Replies and enables prefix completion in search.</td>
+      <td>Insert, Search</td>
+      <td><code>O(L)</code></td>
+      <td><code>O(L)</code></td>
+      <td><code>O(N*L)</code></td>
+      <td>Extremely fast for prefix-based lookups. L=length of string, N=number of strings.</td>
+    </tr>
+    <tr>
+      <td><strong>Triplet Loss</strong></td>
+      <td>Face ID</td>
+      <td>A loss function used to train an embedding model to distinguish between different identities.</td>
+      <td>N/A (Training)</td>
+      <td colspan="3" style="text-align: center;">N/A</td>
+      <td>A metric learning technique used during model training, not a data structure or runtime algorithm.</td>
+    </tr>
+    <tr>
+      <td><strong>Vector Clock</strong></td>
+      <td>iMessage</td>
+      <td>Resolves conflicting operations (e.g., edit vs. delete) in decentralized, multi-device message synchronization.</td>
+      <td>Update, Compare</td>
+      <td><code>O(N)</code></td>
+      <td><code>O(N)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Tracks causal relationships between events in a distributed system of N replicas.</td>
+    </tr>
+    <tr>
+      <td><strong>Voronoi Cell Approximation</strong></td>
+      <td>AirPods</td>
+      <td>Used with KD-Trees to enable seamless transitions between HRTF zones for immersive Spatial Audio.</td>
+      <td>Compute, Query</td>
+      <td><code>O(N log N)</code></td>
+      <td><code>O(N²)</code></td>
+      <td><code>O(N)</code></td>
+      <td>Partitions a plane into regions based on proximity to a set of N points.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </section>
+
+
+              <section id="references">
+                <h2>References</h2>
+
+                <ol>
+                  <li>
+                    Theodoridis, Theodoros and Rigger, Manuel and Su, Zhendong (2022). 
+                    <i>A Comparative Study on Transformers</i>. 
+                    <a href="https://doi.org/10.1145/3503222.3507764" target="_blank" rel="noopener">Link</a>
+                  </li>
+
+                    <li>
+                      Bharath, M. (2018). <i>Core ML Machine Learning for iOS Developers</i>. Apress. 
+                      <a href="https://books.google.co.in/books?hl=en&lr=&id=wBaJDwAAQBAJ" target="_blank" rel="noopener">Link</a>
+                    </li>
+                  
+
+                  <li>
+                    Charikar, M. (2002). <i>Similarity Estimation Techniques from Rounding Algorithms</i>. Stanford University. 
+                    <a href="https://www.webrankinfo.com/dossiers/wp-content/uploads/simhash.pdf" target="_blank" rel="noopener">PDF</a>
+                  </li>
+
+                  <li>
+                    Tarkoma, S., Rothenberg, C. E., & Lagerspetz, E. (2011). <i>Theory and Practice of Bloom Filters for Distributed Systems</i>. IEEE Communications Surveys & Tutorials, 14(1). 
+                    <a href="https://ieeexplore.ieee.org/abstract/document/5751342" target="_blank" rel="noopener">IEEE Link</a>
+                  </li>
+
+                  <li>
+                    Wayahdi, M. R. (2021). <i>Greedy, A-Star, and Dijkstra’s Algorithms in Finding Shortest Path</i>. International Journal of Advances in Data and Information Systems, 2(1). 
+                    <a href="https://www.academia.edu/79217952/Greedy_A_Star_and_Dijkstra_s_Algorithms_in_Finding_Shortest_Path" target="_blank" rel="noopener">Academia.edu Link</a>
+                  </li>
+
+                  <li>
+                    Wang, S., Chen, J., & Liu, D. (2020). <i>A Survey on Deep Learning Techniques for Image and Video Processing</i>. IEEE Transactions on Circuits and Systems for Video Technology, 30(9), 1-15. 
+                    <a href="https://ieeexplore.ieee.org/document/9127813" target="_blank" rel="noopener">IEEE Link</a>
+                  </li>
+
+                  <li>
+                    Sutton, C., & McCallum, A. (2012). <i>An Introduction to Conditional Random Fields</i>. Foundations and Trends® in Machine Learning, 4(4), 267–373. 
+                    <a href="https://www.nowpublishers.com/article/Details/MAL-013" target="_blank" rel="noopener">Now Publishers Link</a>
+                  </li>
+
+                  <li>
+                    Rossi, E., Chamberlain, B., Frasca, F., Eynard, D., Monti, F., & Bronstein, M. (2020). <i>Temporal Graph Networks for Deep Learning on Dynamic Graphs</i>. arXiv preprint arXiv:2006.10637. 
+                    <a href="https://arxiv.org/abs/2006.10637" target="_blank" rel="noopener">arXiv Link</a>
+                  </li>
+
+                  <li>
+                    Kirchgässner, G., Wolters, J., & Hassler, U. (2007). <i>Introduction to Modern Time Series Analysis</i>. Springer. 
+                    <a href="https://books.google.com/books?hl=en&lr=&id=o7jWV67165QC" target="_blank" rel="noopener">Google Books Link</a>
+                  </li>
+
+                  <li>
+                    Jafari, O., Maurya, P., Nagarkar, P., Islam, K. M., & Crushev, C. (2021). <i>A Survey on Locality Sensitive Hashing Algorithms and their Applications</i>. arXiv preprint arXiv:2102.08942. 
+                    <a href="https://arxiv.org/abs/2102.08942" target="_blank" rel="noopener">arXiv Link</a>
+                  </li>
+
+                  <li>
+                    Savchenko, A. V. (2012). <i>Face Recognition in Real-Time Applications: A Comparison of Directed Enumeration Method and K-d Trees</i>. In N. Aseeva, E. Babkin, & O. Kozyrev (Eds.), Perspectives in Business Informatics Research (BIR 2012). Lecture Notes in Business Information Processing, vol 128. Springer, Berlin, Heidelberg. 
+                    <a href="https://link.springer.com/chapter/10.1007/978-3-642-33281-4_15" target="_blank" rel="noopener">Springer Link</a>
+                  </li>
+
+                  <li>
+                    O’Neil, P., Cheng, E., Gawlick, D., & O’Neil, E. (1996). <i>The log-structured merge-tree (LSM-tree)</i>. Acta Informatica, 33(4), 351–385. 
+                    <a href="https://link.springer.com/article/10.1007/s002360050048" target="_blank" rel="noopener">Springer Link</a>
+                  </li>
+
+                  <li>
+                    Kaplan, H. (2017). <i>Persistent Data Structures</i>. In D. P. Mehta & S. Sahni (Eds.), <i>Handbook of Data Structures and Applications</i> (2nd ed., pp. 33-1–33-24). CRC Press. 
+                    <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781315119335-33/persistent-data-structures-haim-kaplan" target="_blank" rel="noopener">Taylor & Francis Link</a>
+                  </li>
+
+                    
+                  </ol>
+
+
+                  <h3>Image Credits</h3>
+                <ul>
+                  <li>
+                    Image 1 adapted from 
+                    <a href="https://source-website.com/original-image-page" target="_blank" rel="noopener">
+                      GeeksforGeeks: "Bloom Filter - Introduction"
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 2 adapted from 
+                    <a href="https://skedbooks.com/books/data-mining-data-warehousing/tree-pruning/" target="_blank" rel="noopener">
+                      Skedbooks - Tree Pruning
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 3 adapted from 
+                    <a href="https://www.fromkk.com/posts/near-duplicate-with-simhash/" target="_blank" rel="noopener">
+                      KK's Blog - Near-duplicate with SimHash
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 4 adapted from 
+                    <a href="https://github.com/QuantEcon/MatchingMarkets.py" target="_blank" rel="noopener">
+                      MatchingMarkets by QuantEconon GitHub
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 5 adapted from 
+                    <a href="https://link.springer.com/article/10.1007/s10462-019-09793-6#citeas" target="_blank" rel="noopener">
+                      A comprehensive review of conditional random fields: variants, hybrids and applications
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 6 adapted from 
+                    <a href="https://ricardoanderegg.com/posts/bloom-filters-poster/" target="_blank" rel="noopener">
+                      Bloom filters explained in an image
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 7 adapted from 
+                    <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/KDtree.html" target="_blank" rel="noopener">
+                      KD Trees by OpenDSA
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 8 adapted from 
+                    <a href="https://www.researchgate.net/figure/The-pipeline-of-the-MOS-algorithm-with-the-reconstruction-of-graph-signals-The-algorithm_fig2_346463471" target="_blank" rel="noopener">
+                      Jhony H. Giraldo - Mo's Algorithm Pipeline
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 9 adapted from 
+                    <a href="https://medium.com/data-science/similarity-search-part-4-hierarchical-navigable-small-world-hnsw-2aad4fe87d37" target="_blank" rel="noopener">
+                      Medium - Similarity Search, Part 4: Hierarchical Navigable Small World (HNSW)
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 10 adapted from 
+                    <a href="https://www.geeksforgeeks.org/introduction-to-segment-trees-2/" target="_blank" rel="noopener">
+                      Geeksforgeeks - Introduction to Segment Trees
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 11 adapted from 
+                    <a href="https://commons.wikimedia.org/wiki/File:Astarpathfinding.gif" target="_blank" rel="noopener">
+                      Wikimedia - A* Path Finding
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 12 adapted from 
+                    <a href="https://www.researchgate.net/figure/An-example-of-Bloom-filter_fig2_331174392" target="_blank" rel="noopener">
+                      ResearchGate - A Filter-Based Design of Pending Interest Table in Named Data Networking
+                    </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    Image 13 adapted from 
+                    <a href="https://medium.com/smucs/trie-data-structure-fd2de3304e6e" target="_blank" rel="noopener">
+                      Medium - Trie Data Structure
+                    </a>
+                  </li>
+                </ul>
+
+
+
+              </section>
+
+             
+
+      </article>
+
+      <footer class="site-footer">
+        <div class="footer-container">
+          <p class="footer-left">© 2025 Aryan Ankolekar.</p>
+          <div class="footer-icons">
+            <a href="mailto:aryan.ankolekar@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/AryanAnkolekar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/aryan-ankolekar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/AryanAnkolekar" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <aside class="fixed-toc">
+      <h3>Sections</h3>
+      <ul>
+        <li class="toc-section">
+          <a href="#intro">Introduction</a>
+        </li>
+
+        <li class="toc-section">
+          <a href="#shortcuts-app">The Shortcuts App</a>
+          <ul>
+            <li><a href="#dag">Shortcuts as Executable Graphs</a></li>
+            <li><a href="#lexicalscope">Lexical and Contextual Variable Scope</a></li>
+            <li><a href="#costmodelling">Static Path Analysis and Dead Branch Pruning</a></li>
+            <li><a href="#costmodelling">Cost Modeling via Execution Profiling</a></li>
+            <li><a href="#simhash">Failure Clustering Using SimHash and Bloom Filters</a></li>
+            <li><a href="#distilled-transformers">Semantic Embedding via Distilled Transformers</a></li>
+            <li><a href="#a-star">Path Optimization Using A* Scheduling</a></li>
+          </ul>
+        </li>
+
+        <li class="toc-section">
+          <a href="#face-id">The Face ID</a>
+          <ul>
+            <li><a href="#BMG">Face ID as Multi-Stage Biometric Matching Graph</a></li>
+            <li><a href="#graph-based-matching">Graph-Based Matching Using GCNs and Triplet Loss Embedding</a></li>
+            <li><a href="#occlusion-reasoning">Occlusion Reasoning with Conditional Random Fields</a></li>
+            <li><a href="#temporal-graph-analysis">Temporal Graph Analysis for Anti-Spoofing</a></li>
+            <li><a href="#runtime-scheduling">Runtime Scheduling via A Latency-Aware Execution</a></li>
+            <li><a href="#secure-matching">Secure Matching with Bloom Filters and LSH Indexing</a></li>
+            <li><a href="#hardware-aware-data-layout">Hardware-Aware Data Layout via KD-Trees and Convex Hulls</a></li>
+            <li><a href="#federated-learning">Federated Learning and Model Personalization</a></li>
+          </ul>
+        </li>
+
+        <li class="toc-section">
+          <a href="#spotlight">Spotlight Search</a>
+          <ul>
+            <li><a href="#semantic-indexing">Real-Time Semantic Indexing Using Inverted Indices + LSM Trees</a></li>
+            <li><a href="#query-planning">Query Planning with Mo's Algorithm for Efficient Filtering</a></li>
+            <li><a href="#embedding-based-ranking">Embedding-Based Ranking with Transformers and HNSW</a></li>
+            <li><a href="#zero-interaction-suggestion">Zero-Interaction Suggestions with Bloom Filters and Caching</a></li>
+          </ul>
+        </li>
+
+        <li class="toc-section">
+          <a href="#airpods">Airpods</a>
+          <ul>
+            <li><a href="#context-aware-audio-graph">Context-Aware Adaptive Audio Graph for AirPods and Apple Wearables</a></li>
+            <li><a href="#persistent-segment-tree">Personalized EQ Optimization via Persistent Segment Trees</a></li>
+            <li><a href="#attention-aware-routing">Attention-Aware Notification Routing via A*-Search</a></li>
+            <li><a href="#audio-anti-spoofing">Audio Anti-Spoofing via GNN on Acoustic Graph</a></li>
+            <li><a href="#retrospective-interactive-mining">Mo's Algorithm for Retrospective Interaction Mining</a></li>
+            <li><a href="#wake-word-duplication">Bloom Filter-Based Wake Word Deduplication</a></li>
+            <li><a href="#spatial-audio">KD-Tree Assisted Spatial Audio Personalization</a></li> 
+          </ul>
+        </li>
+
+        <li class="toc-section">
+          <a href="#imessage">iMessage</a>
+          <ul>
+            <li><a href="#graph-state-synchronization">End-to-End Encrypted Graph State Synchronization</a></li>
+            <li><a href="#dynamic-embedding-index">Smart Replies Using Trie + Dynamic Embedding Index</a></li>
+            <li><a href="#a-star-network-weights">Message Delivery Graph Using A* with Network Weights</a></li>
+            <li><a href="#intent-recognition">GNN-Based Intent Recognition from Multimodal Threads</a></li>
+            <li><a href="#count-min-sketch">Count-Min Sketch for Spam and Repeated Phrase Detection</a></li>
+            <li><a href="#notifs-scheduling-segment-tree">Notification Scheduling with Persistent Segment Trees</a></li>
+          </ul>
+        </li>
+
+        <li class="toc-section">
+          <a href="#complexity-analysis">Complexity Analysis</a>
+        </li>
+
+        <li class="toc-section">
+          <a href="#references">References</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+  <div id="searchModal" class="search-modal" style="display: none;">
+    <div class="search-modal-content">
+      <button class="close-search" aria-label="Close search">Close</button>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search articles or tags..." />
+        <button id="clearSearchInput" aria-label="Clear search input" style="display: none;">&times;</button>
+      </div>
+      <div class="search-results-container">
+        <div class="search-tags" id="searchTags">
+          <!-- Tags will be dynamically inserted here -->
+        </div>
+        <div class="search-articles" id="searchArticles">
+          <!-- Articles will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="apsassets/theme.js"></script>
+  <script src="apsassets/script.js"></script>
+  <button id="scrollToNextSection" class="scroll-button" aria-label="Scroll to next section">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+</body>
+</html>
